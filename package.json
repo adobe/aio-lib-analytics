@@ -1,0 +1,22 @@
+{
+  "name": "adobeio-cna-core-analytics",
+  "version": "1.0.0",
+  "description": "Adobe Analytics SDK",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint './src/**/*.js'"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "swagger-client": "^3.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.7.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
