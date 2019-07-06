@@ -26,12 +26,12 @@ const analyticsClient = await sdk.init('<companyID>', 'x-api-key', '<valid auth 
 
 
     //generate report
-    // const report = await analyticsClient.getReport(queryJSON)
+    const report = await analyticsClient.getReport(queryJSON)
 ``` 
 
 ### Contributing
 
-Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
+Contributions are welcome! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
 
 ### Licensing
 
