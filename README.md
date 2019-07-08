@@ -1,5 +1,5 @@
-# Adobe Analytics SDK
-Javascript SDK for Adobe Analytics APIs.
+# I/O CNA Adobe Analytics Core SDK
+Javascript Core SDK wrapping [Adobe Analytics 2.0 APIs](https://adobedocs.github.io/analytics-2.0-apis/#/).
 
 
 ### Installing 
