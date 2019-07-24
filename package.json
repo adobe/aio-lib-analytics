@@ -4,7 +4,9 @@
   "description": "Adobe Analytics SDK",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint './src/**/*.js'"
+    "test": "npm run lint && npm run unit-tests",
+    "lint": "eslint './src/**/*.js'",
+    "unit-tests": "jest --ci -w=2"
   },
   "dependencies": {
     "fs": "0.0.1-security",
@@ -13,10 +15,17 @@
   },
   "devDependencies": {
     "eslint": "^5.14.1",
+    "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^22.7.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "fetch-mock": "^7.3.3",
+    "jest": "^24.1.0",
+    "jest-cli": "^24.8.0",
+    "jest-fetch-mock": "^2.1.2",
+    "jest-junit": "^6.3.0",
+    "jest-plugin-fs": "^2.9.0"
   }
 }
