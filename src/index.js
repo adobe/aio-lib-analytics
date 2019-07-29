@@ -49,9 +49,9 @@ class AnalyticsCoreAPI {
     return this
   }
 
-  /** Retrieve many calculated metrics. 
+  /** Retrieve many calculated metrics.
   * A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type
-  * Other attributes can be optionally requested through the 'expansion' field:\n\n* 
+  * Other attributes can be optionally requested through the 'expansion' field:\n\n*
   *     modified: Date that the metric was last modified (ISO 8601)
   *     definition: Calculated metric definition as JSON object
   *     compatibility: Products that the metric is compatible with
@@ -84,9 +84,9 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Retrieve a single calculated metric by id. 
+  /** Retrieve a single calculated metric by id.
   * A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type
-  * Other attributes can be optionally requested through the 'expansion' field:\n\n* 
+  * Other attributes can be optionally requested through the 'expansion' field:\n\n*
   *     modified: Date that the metric was last modified (ISO 8601)
   *     definition: Calculated metric definition as JSON object
   *     compatibility: Products that the metric is compatible with
@@ -114,9 +114,9 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Retrieves report suites that match the given filters. 
+  /** Retrieves report suites that match the given filters.
   * Returns all report suite types in a single collection.
-  * 
+  *
   * @param options {Object} to control report suites search.
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
   * @param options.limit Number of results per page. Default 10.
@@ -137,9 +137,9 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Retrieves report suite by id. 
+  /** Retrieves report suite by id.
   * Returns all report suite types in a single collection.
-  * 
+  *
   * @param rsid {string} The rsid of the suite to return.
   * @param options {Object} to control eport suites search.
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
@@ -159,9 +159,9 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Returns a list of dateranges for the user. 
+  /** Returns a list of dateranges for the user.
   * This function allows users to store commonly used date ranges so that they\ncan be reused throughout the product.
-  * 
+  *
   * @param options {Object} to control date range search.
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
   * @param options.filterByIds Filter list to only include date ranges in the specified list\n(comma-delimited list of IDs).
@@ -182,8 +182,8 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Retrieves configuration for a DateRange.. 
-  * 
+  /** Retrieves configuration for a DateRange..
+  *
   * @param dateRangeId {string} The DateRange id for which to retrieve information.
   * @param options {Object} to control date range result.
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
@@ -204,7 +204,7 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Returns a list of dimensions for a given report suite. 
+  /** Returns a list of dimensions for a given report suite.
   *
   * @param rsid {string} A Report Suite ID.
   * @param options {Object} to control dimensions search.
@@ -229,7 +229,7 @@ class AnalyticsCoreAPI {
     })
   }
 
-  /** Returns a dimension for the given report suite and dimension Id. 
+  /** Returns a dimension for the given report suite and dimension Id.
   *
   * @param dimensionId {string} The dimension ID. For example a valid id is a value like 'evar1'.
   * @param rsid {string} A Report Suite ID.
@@ -254,9 +254,9 @@ class AnalyticsCoreAPI {
   }
 
   /** Returns a list of metrics for the given report suite.
-  * This returns the metrics list primarily for the Analytics product. 
+  * This returns the metrics list primarily for the Analytics product.
   * The platform identity API Returns a list of all possible metrics for the supported systems.
-  * 
+  *
   * @param rsid {string} A Report Suite ID.
   * @param options {Object} to control dimension result.
   * @param options.expansion Comma-delimited list of additional metadata fields\nto include on response.
@@ -279,9 +279,9 @@ class AnalyticsCoreAPI {
   }
 
   /** Returns a metric for the given report suite.
-  * This returns the metrics list primarily for the Analytics product. 
+  * This returns the metrics list primarily for the Analytics product.
   * The platform identity API Returns a list of all possible metrics for the supported systems.
-  * 
+  *
   * @param id {string} The id of the metric for which to retrieve info. Note ids are values\nlike pageviews, not metrics/pageviews.
   * @param rsid {string} A Report Suite ID.
   * @param options {Object} to control dimension result.
@@ -305,7 +305,7 @@ class AnalyticsCoreAPI {
   }
 
   /** Runs a report for the request.
-  * See the [Reporting User\nGuide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details. 
+  * See the [Reporting User\nGuide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.
   *
   * @param body {Object} report query.
   */
@@ -323,7 +323,7 @@ class AnalyticsCoreAPI {
   }
 
   /** Retrieve All Segments.
-  * 
+  *
   * @param options {Object} to control segments search.
   * @param options.expansion Comma-delimited list of additional metadata fields\nto include on response.
   * @param options.includeType Include additional segments not owned by user. The \"all\" option\ntakes precedence over \"shared\".
@@ -404,7 +404,7 @@ class AnalyticsCoreAPI {
   __createRequest (body, query) {
     return {
       requestBody: body,
-      'server': 'https://analytics.adobe.io/api/{companyId}/',
+      server: 'https://analytics.adobe.io/api/{companyId}/',
       serverVariables: {
         companyId: this.companyId
       }
