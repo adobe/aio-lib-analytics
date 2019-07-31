@@ -12,8 +12,6 @@ governing permissions and limitations under the License.
 'use strict'
 
 const Swagger = require('swagger-client')
-const fs = require('fs')
-const path = require('path')
 
 function init (companyId, apiKey, token) {
   return new Promise((resolve, reject) => {
@@ -33,10 +31,9 @@ function init (companyId, apiKey, token) {
 class AnalyticsCoreAPI {
   async init (companyId, apiKey, token) {
     // init swagger client
-    const swaggerJsonPath = path.join(__dirname, './../spec/analytics_api.json')
-    const swaggerJson = JSON.parse(fs.readFileSync(swaggerJsonPath, 'UTF-8'))
+    const spec = require('../spec/analytics_api.json')
     const swagger = new Swagger({
-      spec: swaggerJson,
+      spec: spec,
       requestInterceptor: req => {
         this.__setHeaders(req, this)
       },
