@@ -28,7 +28,18 @@ function init (companyId, apiKey, token) {
   })
 }
 
+/**
+* This class provides methods to call Adobe Analytics APIs.
+* Before calling any method initialize the instance by calling init method on it
+* with valid company id, apiKey and auth token
+*/
 class AnalyticsCoreAPI {
+  /** Initialize sdk.
+  *
+  * @param companyId {string} company ID to be used with Adobe Analytics.
+  * @param apiKey {string} Your api key
+  * @param token {string} Valid auth token
+  */
   async init (companyId, apiKey, token) {
     // init swagger client
     const spec = require('../spec/analytics_api.json')
