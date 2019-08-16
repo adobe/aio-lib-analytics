@@ -7,7 +7,7 @@
     "test": "npm run lint && npm run unit-tests",
     "lint": "eslint './src/**/*.js'",
     "unit-tests": "jest --ci -w=2",
-    "generate-docs": "./node_modules/.bin/jsdoc2md ./src/index.js > ./docs/SDK.md"
+    "generate-docs": "jsdoc2md ./src/index.js > ./docs/SDK.md"
   },
   "dependencies": {
     "fs": "0.0.1-security",
