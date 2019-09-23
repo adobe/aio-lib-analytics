@@ -7,7 +7,7 @@
     "test": "npm run lint && npm run unit-tests",
     "lint": "eslint './src/**/*.js'",
     "unit-tests": "jest --ci -w=2",
-    "generate-docs": "jsdoc2md ./src/index.js > ./docs/SDK.md"
+    "generate-docs": "jsdoc2md -t ./docs/readme_template.md ./src/index.js > README.md"
   },
   "dependencies": {
     "swagger-client": "^3.9.0"
