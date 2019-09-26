@@ -12,6 +12,9 @@ governing permissions and limitations under the License.
 'use strict'
 
 const Swagger = require('swagger-client')
+const { codes } = require('./SDKErrors')
+const debugNamespace = 'aio-cna-core-analytics'
+const debug = require('debug')(debugNamespace)
 
 function init (companyId, apiKey, token) {
   return new Promise((resolve, reject) => {
@@ -19,11 +22,12 @@ function init (companyId, apiKey, token) {
 
     clientWrapper.init(companyId, apiKey, token)
       .then(initializedSDK => {
-        console.log('sdk initialized successfully')
+        debug('sdk initialized successfully')
         resolve(initializedSDK)
       })
       .catch(err => {
-        console.log('sdk init error ' + err)
+        debug(`sdk init error: ${err}`)
+        reject(err)
       })
   })
 }
@@ -41,20 +45,37 @@ class AnalyticsCoreAPI {
   * @param token {string} Valid auth token
   */
   async init (companyId, apiKey, token) {
-    // init swagger client
-    const spec = require('../spec/analytics_api.json')
-    const swagger = new Swagger({
-      spec: spec,
-      requestInterceptor: req => {
-        this.__setHeaders(req, this)
-      },
-      usePromise: true
-    })
-    this.sdk = (await swagger)
-    this.companyId = companyId
-    this.apiKey = apiKey
-    this.token = token
-    return this
+    const initErrors = []
+    if (!companyId) {
+      initErrors.push('companyId')
+    }
+    if (!apiKey) {
+      initErrors.push('apiKey')
+    }
+    if (!token) {
+      initErrors.push('token')
+    }
+
+    if (initErrors.length) {
+      const sdkDetails = { companyId, apiKey, token }
+      throw new codes.ERROR_SDK_INITIALIZATION({ sdkDetails, messageValues: `${initErrors.join(', ')}` })
+    } else {
+      // init swagger client
+      const spec = require('../spec/analytics_api.json')
+      const swagger = new Swagger({
+        spec: spec,
+        requestInterceptor: req => {
+          this.__setHeaders(req, this)
+        },
+        usePromise: true
+      })
+      this.sdk = (await swagger)
+      this.companyId = companyId
+      this.apiKey = apiKey
+      this.token = token
+
+      return this
+    }
   }
 
   /** Retrieve many calculated metrics.
