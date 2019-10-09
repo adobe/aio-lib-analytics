@@ -54,15 +54,15 @@ with valid company id, apiKey and auth token
 * [AnalyticsCoreAPI](#AnalyticsCoreAPI)
     * [.init(companyId, apiKey, token)](#AnalyticsCoreAPI+init)
     * [.getCalculatedMetrics(options)](#AnalyticsCoreAPI+getCalculatedMetrics)
-    * [.getCalculatedMetricsById(id, options)](#AnalyticsCoreAPI+getCalculatedMetricsById)
+    * [.getCalculatedMetricById(id, options)](#AnalyticsCoreAPI+getCalculatedMetricById)
     * [.getCollections(options)](#AnalyticsCoreAPI+getCollections)
-    * [.getCollectionsById(rsid, options)](#AnalyticsCoreAPI+getCollectionsById)
+    * [.getCollectionById(rsid, options)](#AnalyticsCoreAPI+getCollectionById)
     * [.getDateRanges(options)](#AnalyticsCoreAPI+getDateRanges)
-    * [.getDateRangesById(dateRangeId, options)](#AnalyticsCoreAPI+getDateRangesById)
+    * [.getDateRangeById(dateRangeId, options)](#AnalyticsCoreAPI+getDateRangeById)
     * [.getDimensions(rsid, options)](#AnalyticsCoreAPI+getDimensions)
-    * [.getDimensionsById(dimensionId, rsid, options)](#AnalyticsCoreAPI+getDimensionsById)
+    * [.getDimensionById(dimensionId, rsid, options)](#AnalyticsCoreAPI+getDimensionById)
     * [.getMetrics(rsid, options)](#AnalyticsCoreAPI+getMetrics)
-    * [.getMetricsById(id, rsid, options)](#AnalyticsCoreAPI+getMetricsById)
+    * [.getMetricById(id, rsid, options)](#AnalyticsCoreAPI+getMetricById)
     * [.getReport(body)](#AnalyticsCoreAPI+getReport)
     * [.getSegments(options)](#AnalyticsCoreAPI+getSegments)
     * [.validateSegment(rsid, body)](#AnalyticsCoreAPI+validateSegment)
@@ -111,9 +111,9 @@ For more information about calculated metrics go [here](https://github.com/Adobe
 | options.rsids |  | Filter list to only include calculated metrics tied to specified\nRSID list (comma-delimited). |
 | options.tagNames |  | Filter list to only include calculated metrics that contains one of\nthe tags. |
 
-<a name="AnalyticsCoreAPI+getCalculatedMetricsById"></a>
+<a name="AnalyticsCoreAPI+getCalculatedMetricById"></a>
 
-### analyticsCoreAPI.getCalculatedMetricsById(id, options)
+### analyticsCoreAPI.getCalculatedMetricById(id, options)
 Retrieve a single calculated metric by id.
 A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type
 Other attributes can be optionally requested through the 'expansion' field:\n\n*
@@ -151,9 +151,9 @@ Returns all report suite types in a single collection.
 | options.rsids |  | Filter list to only include suites in this RSID list\n(comma-delimited). |
 | options.rsidContains |  | Filter list to only include suites whose rsid contains rsidContains. |
 
-<a name="AnalyticsCoreAPI+getCollectionsById"></a>
+<a name="AnalyticsCoreAPI+getCollectionById"></a>
 
-### analyticsCoreAPI.getCollectionsById(rsid, options)
+### analyticsCoreAPI.getCollectionById(rsid, options)
 Retrieves report suite by id.
 Returns all report suite types in a single collection.
 
@@ -182,9 +182,9 @@ This function allows users to store commonly used date ranges so that they\ncan 
 | options.locale |  | Locale. |
 | options.page |  | Page number (base 0 - first page is \"0\"). Default 0. |
 
-<a name="AnalyticsCoreAPI+getDateRangesById"></a>
+<a name="AnalyticsCoreAPI+getDateRangeById"></a>
 
-### analyticsCoreAPI.getDateRangesById(dateRangeId, options)
+### analyticsCoreAPI.getDateRangeById(dateRangeId, options)
 Retrieves configuration for a DateRange..
 
 **Kind**: instance method of [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)  
@@ -213,9 +213,9 @@ Returns a list of dimensions for a given report suite.
 | options.reportable |  | Only include dimensions that are valid within a report. |
 | options.segmentable |  | Only include dimensions that are valid within a segment. |
 
-<a name="AnalyticsCoreAPI+getDimensionsById"></a>
+<a name="AnalyticsCoreAPI+getDimensionById"></a>
 
-### analyticsCoreAPI.getDimensionsById(dimensionId, rsid, options)
+### analyticsCoreAPI.getDimensionById(dimensionId, rsid, options)
 Returns a dimension for the given report suite and dimension Id.
 
 **Kind**: instance method of [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)  
@@ -245,9 +245,9 @@ The platform identity API Returns a list of all possible metrics for the support
 | options.locale |  | Locale that system named metrics should be returned in. |
 | options.segmentable |  | Filter the metrics by if they are valid in a segment. |
 
-<a name="AnalyticsCoreAPI+getMetricsById"></a>
+<a name="AnalyticsCoreAPI+getMetricById"></a>
 
-### analyticsCoreAPI.getMetricsById(id, rsid, options)
+### analyticsCoreAPI.getMetricById(id, rsid, options)
 Returns a metric for the given report suite.
 This returns the metrics list primarily for the Analytics product.
 The platform identity API Returns a list of all possible metrics for the supported systems.

@@ -12,6 +12,7 @@ governing permissions and limitations under the License.
 var fetchMock = require('fetch-mock');
 const sdk = require('../src')
 const mock = require("./mock")
+const errorSDK = require('../src/SDKErrors')
 const company = "test-company"
 const apiKey = "test-apikey"
 const token = "test-token"
@@ -31,7 +32,7 @@ test('sdk init test', async () => {
   expect(sdkClient.companyId).toBe(company)
   expect(sdkClient.apiKey).toBe(apiKey)
   expect(sdkClient.token).toBe(token)
- 
+
 });
 
 test('test getCalculatedMetrics', async () => {
@@ -47,30 +48,30 @@ test('test getCalculatedMetrics', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Bad_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRICS)
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Unauthorized_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRICS)
   mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Forbidden_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRICS)
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRICS)
 })
 
-test('test getCalculatedMetricsById', async () => {
+test('test getCalculatedMetricById', async () => {
   const url = "https://analytics.adobe.io/api/test-company/calculatedmetrics/123"
   const method = "GET"
-  const api = "getCalculatedMetricsById"
+  const api = "getCalculatedMetricById"
 
   mockResponseWithMethod(url, method, mock.data.calculatedMetric)
   //check success response
-  var res = await sdkClient.getCalculatedMetricsById(123)
+  var res = await sdkClient.getCalculatedMetricById(123)
   expect(res.id).toEqual("123")
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Forbidden_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRIC_BY_ID, [123])
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRIC_BY_ID, [123])
 })
 
 test('test getCollections', async () => {
@@ -86,24 +87,24 @@ test('test getCollections', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTIONS)
 })
 
-test('test getCollectionsById', async () => {
+test('test getCollectionById', async () => {
   const url = "https://analytics.adobe.io/api/test-company/collections/suites/123"
   const method = "GET"
-  const api = "getCollectionsById"
+  const api = "getCollectionById"
 
   mockResponseWithMethod(url, method, mock.data.collection)
   //check success response
-  var res = await sdkClient.getCollectionsById(123)
+  var res = await sdkClient.getCollectionById(123)
   expect(res.rsid).toEqual("123")
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Forbidden_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID, [123])
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID, [123])
 })
 
 test('test getDateRanges', async () => {
@@ -118,19 +119,19 @@ test('test getDateRanges', async () => {
   expect(res[0].id).toEqual("123")
 })
 
-test('test getDateRangesById', async () => {
+test('test getDateRangeById', async () => {
   const url = "https://analytics.adobe.io/api/test-company/dateranges/123"
   const method = "GET"
-  const api = "getDateRangesById"
+  const api = "getDateRangeById"
 
   mockResponseWithMethod(url, method, mock.data.dateRange)
   //check success response
-  var res = await sdkClient.getDateRangesById(123)
+  var res = await sdkClient.getDateRangeById(123)
   expect(res.id).toEqual("123")
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DATE_RANGE_BY_ID, [123])
 })
 
 test('test getDimensions', async () => {
@@ -146,26 +147,26 @@ test('test getDimensions', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Bad_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSIONS, [123])
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Unauthorized_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSIONS, [123])
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSIONS, [123])
 })
 
-test('test getDimensionsById', async () => {
+test('test getDimensionById', async () => {
   const url = "https://analytics.adobe.io/api/test-company/dimensions/111?rsid=123"
   const method = "GET"
-  const api = "getDimensionsById"
+  const api = "getDimensionById"
 
   mockResponseWithMethod(url, method, mock.data.dimension)
   //check success response
-  var res = await sdkClient.getDimensionsById(111, 123)
+  var res = await sdkClient.getDimensionById(111, 123)
   expect(res.id).toEqual("111")
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Unauthorized_Request.message,[111,123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSION_BY_ID,[111,123])
 })
 
 test('test getMetrics', async () => {
@@ -181,26 +182,26 @@ test('test getMetrics', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Bad_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRICS, [123])
   mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Forbidden_Request.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRICS, [123])
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message, [123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRICS, [123])
 })
 
-test('test getMetricsById', async () => {
+test('test getMetricById', async () => {
   const url = "https://analytics.adobe.io/api/test-company/metrics/111?rsid=123"
   const method = "GET"
-  const api = "getMetricsById"
+  const api = "getMetricById"
 
   mockResponseWithMethod(url, method, mock.data.metric)
   //check success response
-  var res = await sdkClient.getMetricsById(111, 123)
+  var res = await sdkClient.getMetricById(111, 123)
   expect(res.id).toEqual("111")
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Unauthorized_Request.message,[111,123])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRIC_BY_ID,[111,123])
 })
 
 test('test getReport', async () => {
@@ -216,7 +217,7 @@ test('test getReport', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Bad_Request.message, [{}])
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_REPORT, [{}])
 })
 
 test('test getSegments', async () => {
@@ -232,13 +233,34 @@ test('test getSegments', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Bad_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Unauthorized_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
   mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Forbidden_Request.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
+})
+
+test('test validateSegment', async () => {
+  const url = "https://analytics.adobe.io/api/test-company/segments/validate?rsid=111"
+  const method = "POST"
+  const api = "validateSegment"
+
+  mockResponseWithMethod(url, method, mock.data.validSegment)
+  //check success response
+  var res = await sdkClient.validateSegment(111, {})
+  expect(res.valid).toEqual(true)
+
+  //check error responses
+  // mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
+  // res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
+  // mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
+  // res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
+  // mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
+  // res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
+  // mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
+  // res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS)
 })
 
 test('test getUsers', async () => {
@@ -265,28 +287,8 @@ test('test getCurrentUser', async () => {
 
   //check error responses
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
-  res = await checkErrorResponse(api, url, method, mock.errors.Internal_Server_Error.message)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CURRENT_USER)
 })
-
-function checkErrorResponses(fn, url, method, args) {
-  var mockMethod = mockResponseWithMethod
-  const client = sdkClient
-  return new Promise((resolve, reject) => {
-    for(var i=0; i < mock.errors.length; i++) {
-      var errObj = mock.errors[i]
-      mockMethod(url, method, errObj.err)
-
-      checkErrorResponse(fn, url, method, errObj.message, args)
-      .then(res => {
-        //continue
-      })
-      .catch(e => {
-        reject(e)
-      })
-    }
-    resolve()
-  })
-}
 
 function checkErrorResponse(fn, url, method, error, args = []) {
   const client = sdkClient
@@ -294,11 +296,12 @@ function checkErrorResponse(fn, url, method, error, args = []) {
 
     (client[fn](args[0], args[1]))
     .then(res => {
-      var ret = 
+      var ret =
       reject(" No error response")
     })
     .catch(e => {
-      expect(e).toEqual(new Error(error))
+      expect(e.name).toEqual(error.name)
+      expect(e.code).toEqual(error.code)
       resolve()
     })
   })

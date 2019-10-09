@@ -101,14 +101,14 @@ class AnalyticsCoreAPI {
   * @param options.tagNames Filter list to only include calculated metrics that contains one of\nthe tags.
   */
   getCalculatedMetrics ({ calculatedMetricFilter, expansion, limit = 10, locale, name, ownerId, page = 0, rsids, tagNames } = {}) {
+    const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
       this.sdk.apis.calculatedmetrics.findCalculatedMetrics(arguments[0], this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getCalculatedMetrics - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_CALCULATED_METRICS({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -128,17 +128,17 @@ class AnalyticsCoreAPI {
   * @param options.expansion Comma-delimited list of additional metadata fields\nto include on response.
   * @param options.locale Locale.
   */
-  getCalculatedMetricsById (id, { expansion, locale } = {}) {
+  getCalculatedMetricById (id, { expansion, locale } = {}) {
     var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.id = id
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.calculatedmetrics.findOneCalculatedMetric(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getCalculatedMetricsById - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_CALCULATED_METRIC_BY_ID({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -154,14 +154,14 @@ class AnalyticsCoreAPI {
   * @param options.rsidContains Filter list to only include suites whose rsid contains rsidContains.
   */
   getCollections ({ expansion, limit = 10, page = 0, rsidContains, rsids } = {}) {
+    const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
       this.sdk.apis.collections.getCollections(arguments[0], this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getCollections - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_COLLECTIONS({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -173,17 +173,17 @@ class AnalyticsCoreAPI {
   * @param options {Object} to control eport suites search.
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
   */
-  getCollectionsById (rsid, { expansion } = {}) {
+  getCollectionById (rsid, { expansion } = {}) {
     var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.collections.findOne(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getCollectionsById - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_COLLECTION_BY_ID({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -199,14 +199,14 @@ class AnalyticsCoreAPI {
   * @param options.page Page number (base 0 - first page is \"0\"). Default 0.
   */
   getDateRanges ({ expansion, filterByIds, limit = 10, locale, page = 0 } = {}) {
+    const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
       this.sdk.apis.dateranges.getDateRanges(arguments[0], this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getDateRanges - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_DATE_RANGES({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -218,17 +218,17 @@ class AnalyticsCoreAPI {
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
   * @param options.locale Locale.
   */
-  getDateRangesById (dateRangeId, { expansion, locale } = {}) {
+  getDateRangeById (dateRangeId, { expansion, locale } = {}) {
     var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.dateRangeId = dateRangeId
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.dateranges.getDateRange(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getDateRangesById - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_DATE_RANGE_BY_ID({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -246,14 +246,14 @@ class AnalyticsCoreAPI {
   getDimensions (rsid, { classifiable, expansion, locale, reportable, segmentable } = {}) {
     var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.dimensions.dimensions_getDimensions(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getDimensions - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_DIMENSIONS({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -266,18 +266,18 @@ class AnalyticsCoreAPI {
   * @param options.expansion Comma-delimited list of additional metadata fields\nto include on response.
   * @param options.locale Locale.
   */
-  getDimensionsById (dimensionId, rsid, { expansion, locale } = {}) {
+  getDimensionById (dimensionId, rsid, { expansion, locale } = {}) {
     var params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
     params.dimensionId = dimensionId
     params.rsid = rsid
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.dimensions.dimensions_getDimension(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getDimensionsById - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_DIMENSION_BY_ID({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -295,14 +295,14 @@ class AnalyticsCoreAPI {
   getMetrics (rsid, { expansion, locale, segmentable } = {}) {
     var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.metrics.getMetrics(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getMetrics - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_METRICS({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -317,18 +317,18 @@ class AnalyticsCoreAPI {
   * @param options.expansion Comma-delimited list of additional metadata fields\nto include on response.
   * @param options.locale Locale that system named metrics should be returned in.
   */
-  getMetricsById (id, rsid, { expansion, locale } = {}) {
+  getMetricById (id, rsid, { expansion, locale } = {}) {
     var params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
     params.rsid = rsid
     params.id = id
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.metrics.getMetric(params, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getMetricsById - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_METRIC_BY_ID({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -339,14 +339,14 @@ class AnalyticsCoreAPI {
   * @param body {Object} report query.
   */
   getReport (body) {
+    const sdkDetails = body
     return new Promise((resolve, reject) => {
       this.sdk.apis.reports.runReport({}, this.__createRequest(body))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getReport - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_REPORT({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -365,14 +365,14 @@ class AnalyticsCoreAPI {
   * @param options.tagNames Filter list to only include segments that contains one of the tags.
   */
   getSegments ({ expansion, includeType, limit = 10, locale, name, page = 0, rsids, segmentFilter, tagNames } = {}) {
+    const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
       this.sdk.apis.segments.segments_getSegments(arguments[0], this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getSegments - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_SEGMENTS({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -384,14 +384,14 @@ class AnalyticsCoreAPI {
   * @param body {Object} JSON Segment Definition.
   */
   validateSegment (rsid, body) {
+    const sdkDetails = { rsid, body }
     return new Promise((resolve, reject) => {
       this.sdk.apis.segments.segments_validateSegment({ rsid: rsid }, this.__createRequest(body))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling validateSegment - ' + err)
-          reject(err)
+          reject(new codes.ERROR_VALIDATE_SEGMENT({ sdkDetails, messageValues: err }))
         })
     })
   }
@@ -404,28 +404,28 @@ class AnalyticsCoreAPI {
   * @param options.page Page number (base 0 - first page is \"0\"). Default 0.
  */
   getUsers ({ limit = 10, page = 0 } = {}) {
+    const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
       this.sdk.apis.users.findAllUsers(arguments[0], this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getUsers - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_USERS({ sdkDetails, messageValues: err }))
         })
     })
   }
 
   /** Get the current user. */
   getCurrentUser () {
+    const sdkDetails = {}
     return new Promise((resolve, reject) => {
       this.sdk.apis.users.getCurrentUser({}, this.__createRequest({}))
         .then(response => {
           resolve(response.body)
         })
         .catch(err => {
-          console.log('Error while calling getCurrentUser - ' + err)
-          reject(err)
+          reject(new codes.ERROR_GET_CURRENT_USER({ sdkDetails, messageValues: err }))
         })
     })
   }
