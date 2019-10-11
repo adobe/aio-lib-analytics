@@ -1,5 +1,5 @@
 {
-  "name": "adobeio-cna-core-analytics",
+  "name": "@adobe/aio-lib-analytics",
   "version": "1.0.1",
   "description": "Adobe Analytics SDK",
   "main": "src/index.js",
@@ -10,10 +10,11 @@
     "generate-docs": "jsdoc2md -t ./docs/readme_template.md ./src/index.js > README.md"
   },
   "dependencies": {
-    "swagger-client": "^3.9.0"
+    "swagger-client": "^3.9.0",
+    "@adobe/aio-lib-core-errors": "^1.0.0",
+    "@adobe/aio-lib-core-logging": "0.0.4"
   },
   "devDependencies": {
-    "@adobe/aio-lib-core-errors": "^1.0.0",
     "eslint": "^6.2.2",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",

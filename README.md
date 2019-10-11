@@ -12,7 +12,7 @@ $ npm install
 1) Initialize the SDK
 
 ```
-var sdk = require('adobeio-cna-core-analytics');
+var sdk = require('@adobe/aio-lib-analytics');
 
 async function sdkTest() {
   //initialize sdk
@@ -24,7 +24,7 @@ Init method returns an Instance of Class [<code>AnalyticsCoreAPI</code>](#Analyt
 2) Call methods using initialized sdk
 
 ```
-var sdk = require('adobeio-cna-core-analytics');
+var sdk = require('@adobe/aio-lib-analytics');
 
 async function sdkTest() {
     //initialize sdk
@@ -327,6 +327,10 @@ Retrieves a list of all users for the company designated by the auth\ntoken.
 Get the current user.
 
 **Kind**: instance method of [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)  
+### Debug Logs
+
+LOG_LEVEL=debug  <your_call_here>
+
 ### Contributing
 
 Contributions are welcome! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.

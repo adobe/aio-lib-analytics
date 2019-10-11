@@ -13,8 +13,7 @@ governing permissions and limitations under the License.
 
 const Swagger = require('swagger-client')
 const { codes } = require('./SDKErrors')
-const debugNamespace = 'aio-cna-core-analytics'
-const debug = require('debug')(debugNamespace)
+const logger = require('@adobe/aio-lib-core-logging')('aio-lib-analytics', { level: process.env.LOG_LEVEL })
 
 function init (companyId, apiKey, token) {
   return new Promise((resolve, reject) => {
@@ -22,11 +21,11 @@ function init (companyId, apiKey, token) {
 
     clientWrapper.init(companyId, apiKey, token)
       .then(initializedSDK => {
-        debug('sdk initialized successfully')
+        logger.debug('sdk initialized successfully')
         resolve(initializedSDK)
       })
       .catch(err => {
-        debug(`sdk init error: ${err}`)
+        logger.debug(`sdk init error: ${err}`)
         reject(err)
       })
   })
