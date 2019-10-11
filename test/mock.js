@@ -9,32 +9,32 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const Bad_Request = { 
+const Bad_Request = {
     err: {
     throws: new Error('Bad Request')
     },
     message: "Bad Request"
 
 }
-const Unauthorized_Request = { 
+const Unauthorized_Request = {
     err: {
     throws: new Error('Unauthorized')
     },
     message: "Unauthorized"
 }
-const Forbidden_Request = { 
+const Forbidden_Request = {
     err: {
     throws: new Error('Forbidden Request')
     },
     message: "Forbidden Request"
 }
-const Not_Found = { 
+const Not_Found = {
     err: {
     throws: new Error('Not Found')
     },
     message: "Not Found"
 }
-const Internal_Server_Error = { 
+const Internal_Server_Error = {
     err: {
     throws: new Error('Internal Server Error')
     },
@@ -470,6 +470,20 @@ const segment = {
   "modified": "2019-07-24T14:38:42.093Z",
   "created": "2019-07-24T14:38:42.093Z"
 }
+const valid_segment = {
+  "valid": true,
+  "message": "string",
+  "validator_version": "string",
+  "supported_products": [
+    "string"
+  ],
+  "supported_schema": [
+    "string"
+  ],
+  "supported_features": [
+    "string"
+  ]
+}
 const user = {
     "companyid": "123",
     "loginId": 0,
@@ -503,6 +517,7 @@ const data = {
     reportReq: reportReq,
     segments:[segment],
     segment: segment,
+    validSegment: valid_segment,
     users: [user],
     user: user
 
@@ -518,5 +533,3 @@ module.exports = {
     Internal_Server_Error: Internal_Server_Error
   }
 }
-
-
