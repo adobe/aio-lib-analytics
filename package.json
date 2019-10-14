@@ -7,6 +7,7 @@
     "test": "npm run lint && npm run unit-tests",
     "lint": "eslint './src/**/*.js'",
     "unit-tests": "jest --ci -w=2",
+    "e2e": "jest --testRegex './e2e/e2e.js'",
     "generate-docs": "jsdoc2md -t ./docs/readme_template.md ./src/index.js > README.md"
   },
   "dependencies": {
