@@ -447,8 +447,8 @@ class AnalyticsCoreAPI {
     if (!req.headers['x-proxy-global-company-id']) {
       req.headers['x-proxy-global-company-id'] = coreAPIInstance.companyId
     }
-    if (!req.headers['Authorization']) {
-      req.headers['Authorization'] = 'Bearer ' + coreAPIInstance.token
+    if (!req.headers.Authorization) {
+      req.headers.Authorization = 'Bearer ' + coreAPIInstance.token
     }
     if (!req.headers['Content-Type']) {
       req.headers['Content-Type'] = 'application/json'
