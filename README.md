@@ -23,7 +23,7 @@ Javascript SDK wrapping [Adobe Analytics 2.0 APIs](https://adobedocs.github.io/a
 ### Installing
 
 ```bash
-$ npm install
+$ npm install @adobe/aio-lib-analytics
 ```
 
 ### Usage
