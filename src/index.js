@@ -15,6 +15,14 @@ const Swagger = require('swagger-client')
 const { codes } = require('./SDKErrors')
 const logger = require('@adobe/aio-lib-core-logging')('aio-lib-analytics', { level: process.env.LOG_LEVEL })
 
+/**
+* Returns a Promise that resolves with a new AnalyticsCoreAPI object.
+*
+* @param companyId {string} company ID to be used with Adobe Analytics.
+* @param apiKey {string} Your api key
+* @param token {string} Valid auth token
+* @returns {Promise<AnalyticsCoreAPI>}
+*/
 function init (companyId, apiKey, token) {
   return new Promise((resolve, reject) => {
     const clientWrapper = new AnalyticsCoreAPI()
@@ -42,6 +50,7 @@ class AnalyticsCoreAPI {
   * @param companyId {string} company ID to be used with Adobe Analytics.
   * @param apiKey {string} Your api key
   * @param token {string} Valid auth token
+  * @returns {AnalyticsCoreAPI}
   */
   async init (companyId, apiKey, token) {
     const initErrors = []
