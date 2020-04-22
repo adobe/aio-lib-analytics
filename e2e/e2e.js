@@ -11,33 +11,33 @@ governing permissions and limitations under the License.
 */
 
 const sdk = require('../src/index')
-const util = require("util")
+const path = require('path')
+
+// load .env values in the e2e folder, if any
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 var sdkClient = {}
-const company = process.env['ANALYTICS_COMPANY']
-const apiKey = process.env['ANALYTICS_APIKEY']
-const token = process.env['ANALYTICS_TOKEN']
-const rsid = process.env['ANALYTICS_RSID']
+const company = process.env.ANALYTICS_COMPANY
+const apiKey = process.env.ANALYTICS_APIKEY
+const token = process.env.ANALYTICS_TOKEN
+const rsid = process.env.ANALYTICS_RSID
 
 test('sdk init test', async () => {
-
   sdkClient = await sdk.init(company, apiKey, token)
 
   expect(sdkClient.companyId).toBe(company)
   expect(sdkClient.apiKey).toBe(apiKey)
   expect(sdkClient.token).toBe(token)
-
-});
+})
 
 test('test getCollections', async () => {
-  //check success response
-  var res = await sdkClient.getCollections({limit:5, page:0})
+  // check success response
+  var res = await sdkClient.getCollections({ limit: 5, page: 0 })
   expect(res.totalElements).toEqual(6)
 })
 
 test('test getMetrics', async () => {
-  //check success response
-  const metrics = await sdkClient.getMetrics(rsid)
-  expect(metrics.length).toEqual(99)
-
+  // check success response
+  const res = await sdkClient.getMetrics(rsid)
+  expect(res.length).toEqual(99)
 })

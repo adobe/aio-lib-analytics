@@ -113,7 +113,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.calculatedmetrics.findCalculatedMetrics(arguments[0], this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_CALCULATED_METRICS({ sdkDetails, messageValues: err }))
@@ -143,7 +143,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.calculatedmetrics.findOneCalculatedMetric(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_CALCULATED_METRIC_BY_ID({ sdkDetails, messageValues: err }))
@@ -166,7 +166,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.collections.getCollections(arguments[0], this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_COLLECTIONS({ sdkDetails, messageValues: err }))
@@ -188,7 +188,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.collections.findOne(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_COLLECTION_BY_ID({ sdkDetails, messageValues: err }))
@@ -211,7 +211,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.dateranges.getDateRanges(arguments[0], this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_DATE_RANGES({ sdkDetails, messageValues: err }))
@@ -233,7 +233,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.dateranges.getDateRange(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_DATE_RANGE_BY_ID({ sdkDetails, messageValues: err }))
@@ -258,7 +258,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.dimensions.dimensions_getDimensions(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_DIMENSIONS({ sdkDetails, messageValues: err }))
@@ -282,7 +282,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.dimensions.dimensions_getDimension(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_DIMENSION_BY_ID({ sdkDetails, messageValues: err }))
@@ -307,7 +307,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.metrics.getMetrics(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_METRICS({ sdkDetails, messageValues: err }))
@@ -333,7 +333,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.metrics.getMetric(params, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_METRIC_BY_ID({ sdkDetails, messageValues: err }))
@@ -351,7 +351,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.reports.runReport({}, this.__createRequest(body))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_REPORT({ sdkDetails, messageValues: err }))
@@ -377,7 +377,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.segments.segments_getSegments(arguments[0], this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_SEGMENTS({ sdkDetails, messageValues: err }))
@@ -396,7 +396,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.segments.segments_validateSegment({ rsid: rsid }, this.__createRequest(body))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_VALIDATE_SEGMENT({ sdkDetails, messageValues: err }))
@@ -416,7 +416,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.users.findAllUsers(arguments[0], this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_USERS({ sdkDetails, messageValues: err }))
@@ -430,7 +430,7 @@ class AnalyticsCoreAPI {
     return new Promise((resolve, reject) => {
       this.sdk.apis.users.getCurrentUser({}, this.__createRequest({}))
         .then(response => {
-          resolve(response.body)
+          resolve(response)
         })
         .catch(err => {
           reject(new codes.ERROR_GET_CURRENT_USER({ sdkDetails, messageValues: err }))

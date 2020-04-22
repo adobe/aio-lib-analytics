@@ -1,14 +1,16 @@
 {
   "name": "@adobe/aio-lib-analytics",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Adobe Analytics SDK",
   "main": "src/index.js",
   "scripts": {
     "test": "npm run lint && npm run unit-tests",
-    "lint": "eslint src test",
+    "lint": "eslint src test e2e",
+    "beautify": "eslint src test e2e --fix",
     "unit-tests": "jest --coverage --ci -w=2",
     "e2e": "jest --testRegex './e2e/e2e.js'",
-    "generate-docs": "jsdoc2md -t ./docs/readme_template.md ./src/index.js > README.md"
+    "generate-docs": "jsdoc2md -t ./docs/readme_template.md ./src/index.js > README.md",
+    "validate": "bin/validate_spec.js spec/analytics_api.json"
   },
   "dependencies": {
     "swagger-client": "^3.9.0",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "codecov": "^3.6.1",
+    "dotenv": "^8.1.0",
     "eslint": "^6.2.2",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.0",
@@ -30,6 +33,7 @@
     "jest-fetch-mock": "^3.0.0",
     "jest-junit": "^10.0.0",
     "jest-plugin-fs": "^2.9.0",
-    "jsdoc-to-markdown": "^5.0.0"
+    "jsdoc-to-markdown": "^5.0.0",
+    "openapi-schema-validator": "^3.0.3"
   }
 }
