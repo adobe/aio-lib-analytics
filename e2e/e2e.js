@@ -33,11 +33,35 @@ test('sdk init test', async () => {
 test('test getCollections', async () => {
   // check success response
   var res = await sdkClient.getCollections({ limit: 5, page: 0 })
-  expect(res.totalElements).toEqual(6)
+  expect(res.status).toEqual(200)
 })
 
 test('test getMetrics', async () => {
   // check success response
   const res = await sdkClient.getMetrics(rsid)
-  expect(res.length).toEqual(99)
+  expect(res.status).toEqual(200)
+})
+
+test('test getCalculatedMetrics', async () => {
+  // check success response
+  const res = await sdkClient.getCalculatedMetrics()
+  expect(res.status).toEqual(200)
+})
+
+test('test getDateRanges', async () => {
+  // check success response
+  const res = await sdkClient.getDateRanges()
+  expect(res.status).toEqual(200)
+})
+
+test('test getDimensions', async () => {
+  // check success response
+  const res = await sdkClient.getDimensions(rsid)
+  expect(res.status).toEqual(200)
+})
+
+test('test getSegments', async () => {
+  // check success response
+  const res = await sdkClient.getSegments()
+  expect(res.status).toEqual(200)
 })
