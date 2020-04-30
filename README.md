@@ -16,7 +16,7 @@ governing permissions and limitations under the License.
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Greenkeeper badge](https://badges.greenkeeper.io/adobe/aio-lib-analytics.svg)](https://greenkeeper.io/)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/adobe/aio-lib-analytics/master.svg?style=flat-square)](https://codecov.io/gh/adobe/aio-lib-analytics/)
 
-# I/O CNA Adobe Analytics Core SDK
+# Adobe I/O Adobe Analytics SDK
 Javascript Core SDK wrapping [Adobe Analytics 2.0 APIs](https://adobedocs.github.io/analytics-2.0-apis/#/).
 
 
