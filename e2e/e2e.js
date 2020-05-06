@@ -21,6 +21,10 @@ const apiKey = process.env.ANALYTICS_APIKEY
 const token = process.env.ANALYTICS_TOKEN
 const rsid = process.env.ANALYTICS_RSID
 
+beforeAll(async () => {
+  jest.setTimeout(240000)
+})
+
 test('sdk init test', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
 
