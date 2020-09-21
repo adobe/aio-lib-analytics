@@ -34,7 +34,7 @@ var sdk = require('@adobe/aio-lib-analytics');
 
 async function sdkTest() {
   //initialize sdk
-  const analyticsClient = await sdk.init('<companyID>', 'x-api-key', '<valid auth token>')
+  const analyticsClient = await sdk.init('<companyID>', '<x-api-key>', '<valid auth token>')
 }
 ```
 Init method returns an Instance of Class [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)
@@ -46,7 +46,7 @@ var sdk = require('@adobe/aio-lib-analytics');
 
 async function sdkTest() {
     //initialize sdk
-    const analyticsClient = await sdk.init('<companyID>', 'x-api-key', '<valid auth token>')
+    const analyticsClient = await sdk.init('<companyID>', '<x-api-key>', '<valid auth token>')
 
     //get report suites
     const collections = await analyticsClient.getCollections({limit:5, page:0})
