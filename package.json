@@ -13,7 +13,7 @@
     "validate": "bin/validate_spec.js spec/analytics_api.json"
   },
   "dependencies": {
-    "swagger-client": "3.9.6",
+    "swagger-client": "3.10.9",
     "@adobe/aio-lib-core-errors": "^3.0.0",
     "@adobe/aio-lib-core-logging": "^1.1.2"
   },
