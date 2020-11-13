@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 [![Version](https://img.shields.io/npm/v/@adobe/aio-lib-analytics.svg)](https://npmjs.org/package/@adobe/aio-lib-analytics)
 [![Downloads/week](https://img.shields.io/npm/dw/@adobe/aio-lib-analytics.svg)](https://npmjs.org/package/@adobe/aio-lib-analytics)
-[![Build Status](https://travis-ci.com/adobe/aio-lib-analytics.svg?branch=master)](https://travis-ci.com/adobe/aio-lib-analytics)
+![Node.js CI](https://github.com/adobe/aio-lib-analytics/workflows/Node.js%20CI/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Greenkeeper badge](https://badges.greenkeeper.io/adobe/aio-lib-analytics.svg)](https://greenkeeper.io/)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/adobe/aio-lib-analytics/master.svg?style=flat-square)](https://codecov.io/gh/adobe/aio-lib-analytics/)
 
