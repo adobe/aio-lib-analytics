@@ -111,7 +111,7 @@ class AnalyticsCoreAPI {
   getCalculatedMetrics ({ calculatedMetricFilter, expansion, limit = 10, locale, name, ownerId, page = 0, rsids, tagNames } = {}) {
     const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
-      this.sdk.apis.calculatedmetrics.findCalculatedMetrics(arguments[0], this.__createRequest({}))
+      this.sdk.apis.calculatedmetrics.findCalculatedMetrics(arguments[0], this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -141,7 +141,7 @@ class AnalyticsCoreAPI {
     params.id = id
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.calculatedmetrics.findOneCalculatedMetric(params, this.__createRequest({}))
+      this.sdk.apis.calculatedmetrics.findOneCalculatedMetric(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -164,7 +164,7 @@ class AnalyticsCoreAPI {
   getCollections ({ expansion, limit = 10, page = 0, rsidContains, rsids } = {}) {
     const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
-      this.sdk.apis.collections.getCollections(arguments[0], this.__createRequest({}))
+      this.sdk.apis.collections.getCollections(arguments[0], this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -186,7 +186,7 @@ class AnalyticsCoreAPI {
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.collections.findOne(params, this.__createRequest({}))
+      this.sdk.apis.collections.findOne(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -209,7 +209,7 @@ class AnalyticsCoreAPI {
   getDateRanges ({ expansion, filterByIds, limit = 10, locale, page = 0 } = {}) {
     const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
-      this.sdk.apis.dateranges.getDateRanges(arguments[0], this.__createRequest({}))
+      this.sdk.apis.dateranges.getDateRanges(arguments[0], this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -231,7 +231,7 @@ class AnalyticsCoreAPI {
     params.dateRangeId = dateRangeId
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.dateranges.getDateRange(params, this.__createRequest({}))
+      this.sdk.apis.dateranges.getDateRange(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -256,7 +256,7 @@ class AnalyticsCoreAPI {
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.dimensions.dimensions_getDimensions(params, this.__createRequest({}))
+      this.sdk.apis.dimensions.dimensions_getDimensions(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -280,7 +280,7 @@ class AnalyticsCoreAPI {
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.dimensions.dimensions_getDimension(params, this.__createRequest({}))
+      this.sdk.apis.dimensions.dimensions_getDimension(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -305,7 +305,7 @@ class AnalyticsCoreAPI {
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.metrics.getMetrics(params, this.__createRequest({}))
+      this.sdk.apis.metrics.getMetrics(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -331,7 +331,7 @@ class AnalyticsCoreAPI {
     params.id = id
     const sdkDetails = params
     return new Promise((resolve, reject) => {
-      this.sdk.apis.metrics.getMetric(params, this.__createRequest({}))
+      this.sdk.apis.metrics.getMetric(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -375,7 +375,7 @@ class AnalyticsCoreAPI {
   getSegments ({ expansion, includeType, limit = 10, locale, name, page = 0, rsids, segmentFilter, tagNames } = {}) {
     const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
-      this.sdk.apis.segments.segments_getSegments(arguments[0], this.__createRequest({}))
+      this.sdk.apis.segments.segments_getSegments(arguments[0], this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -414,7 +414,7 @@ class AnalyticsCoreAPI {
   getUsers ({ limit = 10, page = 0 } = {}) {
     const sdkDetails = arguments[0]
     return new Promise((resolve, reject) => {
-      this.sdk.apis.users.findAllUsers(arguments[0], this.__createRequest({}))
+      this.sdk.apis.users.findAllUsers(arguments[0], this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
@@ -428,7 +428,7 @@ class AnalyticsCoreAPI {
   getCurrentUser () {
     const sdkDetails = {}
     return new Promise((resolve, reject) => {
-      this.sdk.apis.users.getCurrentUser({}, this.__createRequest({}))
+      this.sdk.apis.users.getCurrentUser({}, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
