@@ -1593,7 +1593,7 @@
             }
          }
       },
-      "/auditlogs/usgage": {
+      "/auditlogs/usage": {
          "get": {
             "tags": [
                "auditlogs"

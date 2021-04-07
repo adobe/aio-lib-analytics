@@ -44,6 +44,12 @@ test('test getCollections and getCollectionById', async () => {
   }
 })
 
+test('test getUsageLogs', async () => {
+  // check success response
+  var res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
+  expect(res.status).toEqual(200)
+})
+
 test('test getMetrics and getMetricById', async () => {
   // check success response
   let res = await sdkClient.getMetrics(rsid, { limit: 5 })

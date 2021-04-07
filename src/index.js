@@ -452,8 +452,11 @@ class AnalyticsCoreAPI {
   * @param options.limit Number of results per page. Default 10.
   * @param options.page Page number (base 0 - first page is \"0\"). Default 0.
  */
-  getUsageLogs (startDate, endDate, { limit = 10, page = 0 } = {}) {
-    var params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
+  getUsageLogs (startDate, endDate) {
+    const params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
+    params.limit = (typeof params.limit === 'undefined') ? 10 : params.limit
+    params.page = (typeof params.page === 'undefined') ? 0 : params.page
+    
     params.startDate = startDate
     params.endDate = endDate
     const sdkDetails = params
