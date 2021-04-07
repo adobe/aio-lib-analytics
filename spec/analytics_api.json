@@ -40,6 +40,9 @@
       },
       {
          "name": "users"
+      },
+      {
+         "name": "auditlogs"
       }
    ],
    "paths": {
@@ -1589,6 +1592,125 @@
                }
             }
          }
+      },
+      "/auditlogs/usgage": {
+         "get": {
+            "tags": [
+               "auditlogs"
+            ],
+            "summary": "Retrieves usage and access logs for the search criteria provided.",
+            "description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
+            "operationId": "getUsageLogs",
+            "parameters": [
+               {
+                  "name": "startDate",
+                  "in": "query",
+                  "description": "Start date for the maximum of a 3 month period.",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "endDate",
+                  "in": "query",
+                  "description": "End date for the maximum of a 3 month period.",
+                  "required": true,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "login",
+                  "in": "query",
+                  "description": "The login value of the user you want to filter logs by.",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "ip",
+                  "in": "query",
+                  "description": "The IP address you want to filter logs by.",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "rsid",
+                  "in": "query",
+                  "description": "The report suite ID you want to filter logs by.",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "eventType",
+                  "in": "query",
+                  "description": "The numeric id for the event type you want to filter logs by.",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "event",
+                  "in": "query",
+                  "description": "The event description you want to filter logs by. No wildcards permitted.",
+                  "required": false,
+                  "schema": {
+                     "type": "string"
+                  }
+               },
+               {
+                  "name": "limit",
+                  "in": "query",
+                  "description": "Number of results per page.",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "default": 10
+                  }
+               },
+               {
+                  "name": "page",
+                  "in": "query",
+                  "description": "Page number (base 0 - first page is \"0\").",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "default": 0
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "successful operation",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "array",
+                           "items": {
+                              "$ref": "#/components/schemas/UsageLogs"
+                           }
+                        }
+                     }
+                  }
+               },
+               "400": {
+                  "description": "Invalid Request. Please check parameters."
+               },
+               "403": {
+                  "description": "User does not have permission to view this data."
+               },
+               "500": {
+                  "description": "External API Error; Data could not be retrieved"
+               }
+            }
+         }
       }
    },
    "components": {
@@ -3006,6 +3128,80 @@
                   }
                }
             }
+         },
+         "UsageLogsItem": {
+            "type": "object",
+            "properties": {
+               "dateCreated": {
+                  "type": "string",
+                  "description": "Creation date"
+               },
+               "eventDescription": {
+                  "type": "string",
+                  "description": "Event description"
+               },
+               "ipAddress": {
+                  "type": "string",
+                  "description": "IPAddress"
+               },
+               "rsid": {
+                  "type": "string",
+                  "description": "Report Suite id"
+               },
+               "eventType": {
+                  "type": "string",
+                  "description": "Type of event"
+               },
+               "login": {
+                  "type": "string",
+                  "description": "The login value of the user"
+               }
+            },
+            "description": "UsageLogs Model"
+         },
+         "UsageLogs": {
+            "type": "object",
+            "properties": {
+               "content": {
+                 "type": "array",
+                 "items": {
+                    "$ref": "#/components/schemas/UsageLogsItem"
+                 }
+               },
+               "totalElements": {
+                  "type": "integer",
+                  "description": "Total elements"
+               },
+               "lastPage": {
+                  "type": "boolean",
+                  "description": "Flag to indicate last page"
+               },
+               "numberOfElements": {
+                  "type": "integer",
+                  "description": "Number of elements"
+               },
+               "totalPages": {
+                  "type": "integer",
+                  "description": "Total number of pages"
+               },
+               "firstPage": {
+                  "type": "boolean",
+                  "description": "Flag to indicate first page"
+               },
+               "sort": {
+                  "type": "string",
+                  "description": "sort type"
+               },
+               "size": {
+                  "type": "integer",
+                  "description": "Total size"
+               },
+               "number": {
+                  "type": "integer",
+                  "description": "Total number"
+               }
+            },
+            "description": "UsageLogs Model"
          }
       }
    }
