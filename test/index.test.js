@@ -337,6 +337,35 @@ test('test getCurrentUser', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CURRENT_USER())
 })
 
+test('test getUsageLogs', async () => {
+  let url = 'https://analytics.adobe.io/api/test-company/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-02T14%3A32%3A33-07&limit=10&page=0'
+  const method = 'GET'
+  const api = 'getUsageLogs'
+
+  mockResponseWithMethod(url, method, mock.data.usageLogs)
+  // check success response
+  var res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
+  expect(res.body.totalElements).toEqual(1)
+  expect(res.body.content[0].dateCreated).toEqual('2021-01-01T00:00:00-07')
+
+  // check error responses
+  mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_USAGE_LOGS(), ['2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07'])
+  mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_USAGE_LOGS(), ['2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07'])
+  mockResponseWithMethod(url, method, mock.errors.Forbidden_Request.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_USAGE_LOGS(), ['2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07'])
+  mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_USAGE_LOGS(), ['2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07'])
+
+  // override defaults
+  url = 'https://analytics.adobe.io/api/test-company/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-02T14%3A32%3A33-07&limit=5&page=1'
+  mockResponseWithMethod(url, method, mock.data.usageLogs)
+  res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07', { limit: 5, page: 1 })
+  expect(res.body.totalElements).toEqual(1)
+  expect(res.body.content[0].dateCreated).toEqual('2021-01-01T00:00:00-07')
+})
+
 test('test __setHeader preset api key header', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
   const req = { headers: { 'x-api-key': 'test' } }
