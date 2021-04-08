@@ -104,6 +104,7 @@ with valid company id, apiKey and auth token
     * [.validateSegment(rsid, body)](#AnalyticsCoreAPI+validateSegment)
     * [.getUsers(options)](#AnalyticsCoreAPI+getUsers)
     * [.getCurrentUser()](#AnalyticsCoreAPI+getCurrentUser)
+    * [.getUsageLogs(startDate, endDate, options)](#AnalyticsCoreAPI+getUsageLogs)
 
 <a name="AnalyticsCoreAPI+init"></a>
 
@@ -363,6 +364,27 @@ Retrieves a list of all users for the company designated by the auth\ntoken.
 Get the current user.
 
 **Kind**: instance method of [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)  
+<a name="AnalyticsCoreAPI+getUsageLogs"></a>
+
+### analyticsCoreAPI.getUsageLogs(startDate, endDate, options)
+Retrieves usage and access logs for the search criteria provided.
+This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.
+
+**Kind**: instance method of [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| startDate | <code>string</code> | Start date for the maximum of a 3 month period. |
+| endDate | <code>string</code> | End date for the maximum of a 3 month period. |
+| options | <code>Object</code> | options to filter logs. |
+| options.login |  | The login value of the user you want to filter logs by. |
+| options.ip |  | The IP address you want to filter logs by. |
+| options.rsid |  | The report suite ID you want to filter logs by. |
+| options.eventType |  | The numeric id for the event type you want to filter logs by. |
+| options.event |  | The event description you want to filter logs by. No wildcards permitted. |
+| options.limit |  | Number of results per page. Default 10. |
+| options.page |  | Page number (base 0 - first page is \"0\"). Default 0. |
+
 <a name="init"></a>
 
 ## init(companyId, apiKey, token) ⇒ [<code>Promise.&lt;AnalyticsCoreAPI&gt;</code>](#AnalyticsCoreAPI)
