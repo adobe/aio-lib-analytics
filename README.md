@@ -34,7 +34,7 @@ var sdk = require('@adobe/aio-lib-analytics');
 
 async function sdkTest() {
   //initialize sdk
-  const analyticsClient = await sdk.init('<companyID>', '<x-api-key>', '<valid auth token>')
+  const analyticsClient = await sdk.init('<companyID>', 'x-api-key', '<valid auth token>')
 }
 ```
 Init method returns an Instance of Class [<code>AnalyticsCoreAPI</code>](#AnalyticsCoreAPI)
@@ -374,16 +374,16 @@ This API returns the usage and access logs for a given date range within a 3 mon
 
 | Param | Type | Description |
 | --- | --- | --- |
-| startDate | <code>string</code> | Start date for the maximum of a 3 month period. |
-| endDate | <code>string</code> | End date for the maximum of a 3 month period. |
+| startDate | <code>string</code> | Start date in ISO-8601 format for the maximum of a 3 month period. |
+| endDate | <code>string</code> | End date in ISO-8601 format for the maximum of a 3 month period. |
 | options | <code>Object</code> | options to filter logs. |
-| options.login |  | The login value of the user you want to filter logs by. |
-| options.ip |  | The IP address you want to filter logs by. |
-| options.rsid |  | The report suite ID you want to filter logs by. |
-| options.eventType |  | The numeric id for the event type you want to filter logs by. |
-| options.event |  | The event description you want to filter logs by. No wildcards permitted. |
-| options.limit |  | Number of results per page. Default 10. |
-| options.page |  | Page number (base 0 - first page is \"0\"). Default 0. |
+| options.login | <code>string</code> | The login value of the user you want to filter logs by. |
+| options.ip | <code>string</code> | The IP address you want to filter logs by. |
+| options.rsid | <code>string</code> | The report suite ID you want to filter logs by. |
+| options.eventType | <code>string</code> | The numeric id for the event type you want to filter logs by. |
+| options.event | <code>string</code> | The event description you want to filter logs by. No wildcards permitted. |
+| options.limit | <code>number</code> | Number of results per page. Default 10. |
+| options.page | <code>number</code> | Page number (base 0 - first page is \"0\"). Default 0. |
 
 <a name="init"></a>
 
