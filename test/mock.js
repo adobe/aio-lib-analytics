@@ -502,6 +502,27 @@ const user = {
   tempLoginEnd: '2019-07-24T14:42:22.803Z',
   title: 'string'
 }
+const usageLogs =
+  {
+    content: [
+      {
+        dateCreated: '2021-01-01T00:00:00-07',
+        eventDescription: 'test',
+        ipAddress: 'fake',
+        rsid: 'test',
+        eventType: 'test',
+        login: 'test'
+      }
+    ],
+    totalElements: 1,
+    lastPage: true,
+    numberOfElements: 1,
+    totalPages: 1,
+    firstPage: true,
+    sort: null,
+    size: 1,
+    number: 0
+  }
 const data = {
   calculatedMetrics: [calculatedMetric],
   calculatedMetric: calculatedMetric,
@@ -519,7 +540,8 @@ const data = {
   segment: segment,
   validSegment: validSegment,
   users: [user],
-  user: user
+  user: user,
+  usageLogs: usageLogs
 
 }
 

@@ -438,6 +438,38 @@ class AnalyticsCoreAPI {
     })
   }
 
+  /** Retrieves usage and access logs for the search criteria provided.
+  * This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.
+  *
+  * @param startDate {string} Start date in ISO-8601 format for the maximum of a 3 month period.
+  * @param endDate {string} End date in ISO-8601 format for the maximum of a 3 month period.
+  * @param options {Object} options to filter logs.
+  * @param options.login {string} The login value of the user you want to filter logs by.
+  * @param options.ip {string} The IP address you want to filter logs by.
+  * @param options.rsid {string} The report suite ID you want to filter logs by.
+  * @param options.eventType {string} The numeric id for the event type you want to filter logs by.
+  * @param options.event {string} The event description you want to filter logs by. No wildcards permitted.
+  * @param options.limit {number} Number of results per page. Default 10.
+  * @param options.page {number} Page number (base 0 - first page is \"0\"). Default 0.
+ */
+  getUsageLogs (startDate, endDate, options = {}) {
+    const params = options
+    params.limit = options.limit || 10
+    params.page = options.page || 0
+    params.startDate = startDate
+    params.endDate = endDate
+    const sdkDetails = params
+    return new Promise((resolve, reject) => {
+      this.sdk.apis.auditlogs.getUsageLogs(params, this.__createRequest(null))
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => {
+          reject(new codes.ERROR_GET_USAGE_LOGS({ sdkDetails, messageValues: err }))
+        })
+    })
+  }
+
   __createRequest (body, query) {
     return {
       requestBody: body,
