@@ -458,14 +458,14 @@ class AnalyticsCoreAPI {
     params.page = options.page || 0
     params.startDate = startDate
     params.endDate = endDate
-
+    const sdkDetails = params
     return new Promise((resolve, reject) => {
       this.sdk.apis.auditlogs.getUsageLogs(params, this.__createRequest(null))
         .then(response => {
           resolve(response)
         })
         .catch(err => {
-          reject(new codes.ERROR_GET_USAGE_LOGS({ params, messageValues: err }))
+          reject(new codes.ERROR_GET_USAGE_LOGS({ sdkDetails, messageValues: err }))
         })
     })
   }
