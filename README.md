@@ -17,7 +17,7 @@ governing permissions and limitations under the License.
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/adobe/aio-lib-analytics/master.svg?style=flat-square)](https://codecov.io/gh/adobe/aio-lib-analytics/)
 
 # Adobe I/O Adobe Analytics SDK
-Javascript Core SDK wrapping [Adobe Analytics 2.0 APIs](https://adobedocs.github.io/analytics-2.0-apis/#/).
+Node Javascript Core SDK wrapping [Adobe Analytics 2.0 APIs](https://adobedocs.github.io/analytics-2.0-apis/#/).
 
 
 ### Installing
