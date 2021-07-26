@@ -119,6 +119,8 @@ test('test getCollectionById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID(), [123])
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID(), [123])
+  mockResponseWithMethod(url, method, mock.errors.Resource_Not_Found.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID(), [123])
 })
 
 test('test getDateRanges', async () => {
@@ -154,6 +156,8 @@ test('test getDateRangeById', async () => {
 
   // check error responses
   mockResponseWithMethod(url, method, mock.errors.Internal_Server_Error.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DATE_RANGE_BY_ID(), [123])
+  mockResponseWithMethod(url, method, mock.errors.Resource_Not_Found.err)
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DATE_RANGE_BY_ID(), [123])
 })
 
@@ -239,6 +243,8 @@ test('test getMetricById', async () => {
   // check error responses
   mockResponseWithMethod(url, method, mock.errors.Unauthorized_Request.err)
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRIC_BY_ID(), [111, 123])
+  mockResponseWithMethod(url, method, mock.errors.Resource_Not_Found.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRIC_BY_ID(), [111, 123])
 })
 
 test('test getReport', async () => {
@@ -254,6 +260,8 @@ test('test getReport', async () => {
 
   // check error responses
   mockResponseWithMethod(url, method, mock.errors.Bad_Request.err)
+  res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_REPORT(), [{}])
+  mockResponseWithMethod(url, method, mock.errors.Invalid_Parameter.err)
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_REPORT(), [{}])
 })
 
@@ -397,6 +405,7 @@ function checkErrorResponse (fn, url, method, error, args = []) {
       .catch(e => {
         expect(e.name).toEqual(error.name)
         expect(e.code).toEqual(error.code)
+        expect(e.message).not.toContain('response: [Object]')
         resolve()
       })
   })
