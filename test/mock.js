@@ -10,14 +10,10 @@ governing permissions and limitations under the License.
 */
 
 class InvalidParametersError extends Error {
-  status;
-  statusCode;
-  response;
-
-  constructor() {
-    super('Bad Request');
-    this.status = 400;
-    this.statusCode = 400;
+  constructor () {
+    super('Bad Request')
+    this.status = 400
+    this.statusCode = 400
     this.response = {
       status: 400,
       statusCode: 400,
@@ -45,14 +41,10 @@ class InvalidParametersError extends Error {
 }
 
 class ResourceNotFoundError extends Error {
-  status;
-  statusCode;
-  response;
-
-  constructor() {
-    super('Not Found');
-    this.status = 404;
-    this.statusCode = 404;
+  constructor () {
+    super('Not Found')
+    this.status = 404
+    this.statusCode = 404
     this.response = {
       ok: false,
       url: 'https://analytics.adobe.io/api/test',
@@ -85,7 +77,7 @@ const BadRequest = {
 const InvalidParameter = {
   err: {
     throws: new InvalidParametersError()
-  },
+  }
 }
 const UnauthorizedRequest = {
   err: {
