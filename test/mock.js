@@ -9,12 +9,75 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+class InvalidParametersError extends Error {
+  constructor () {
+    super('Bad Request')
+    this.status = 400
+    this.statusCode = 400
+    this.response = {
+      status: 400,
+      statusCode: 400,
+      response: {
+        ok: false,
+        url: 'https://analytics.adobe.io/api/test',
+        status: 400,
+        statusText: 'Bad Request',
+        headers: {},
+        text: '{"errorCode":"invalid_parameters","errorDescription":"The passed parameter is not valid","errorId":"e9610fe6-e700-4644-835a-33ed517572f2"}',
+        data: '{"errorCode":"invalid_parameters","errorDescription":"The passed parameter is not valid","errorId":"e9610fe6-e700-4644-835a-33ed517572f2"}',
+        body: {
+          errorCode: 'invalid_parameters',
+          errorDescription: 'The passed parameter is not valid',
+          errorId: 'e9610fe6-e700-4644-835a-33ed517572f2'
+        },
+        obj: {
+          errorCode: 'invalid_parameters',
+          errorDescription: 'The passed parameter is not valid',
+          errorId: 'e9610fe6-e700-4644-835a-33ed517572f2'
+        }
+      }
+    }
+  }
+}
+
+class ResourceNotFoundError extends Error {
+  constructor () {
+    super('Not Found')
+    this.status = 404
+    this.statusCode = 404
+    this.response = {
+      ok: false,
+      url: 'https://analytics.adobe.io/api/test',
+      status: 404,
+      statusText: 'Not Found',
+      headers: {},
+      text: '{"errorCode":"resource_not_found","errorDescription":"The asked resource was not found","errorId":"fb62df94-01a2-446b-b69d-024efe1afade"}',
+      data: '{"errorCode":"resource_not_found","errorDescription":"The asked resource was not found","errorId":"fb62df94-01a2-446b-b69d-024efe1afade"}',
+      body: {
+        errorCode: 'resource_not_found',
+        errorDescription: 'The asked resource was not found',
+        errorId: 'fb62df94-01a2-446b-b69d-024efe1afade'
+      },
+      obj: {
+        errorCode: 'resource_not_found',
+        errorDescription: 'The asked resource was not found',
+        errorId: 'fb62df94-01a2-446b-b69d-024efe1afade'
+      }
+    }
+  }
+}
+
 const BadRequest = {
   err: {
     throws: new Error('Bad Request')
   },
   message: 'Bad Request'
 
+}
+const InvalidParameter = {
+  err: {
+    throws: new InvalidParametersError()
+  }
 }
 const UnauthorizedRequest = {
   err: {
@@ -33,6 +96,11 @@ const NotFound = {
     throws: new Error('Not Found')
   },
   message: 'Not Found'
+}
+const ResourceNotFound = {
+  err: {
+    throws: new ResourceNotFoundError()
+  }
 }
 const InternalServerError = {
   err: {
@@ -552,6 +620,8 @@ module.exports = {
     Unauthorized_Request: UnauthorizedRequest,
     Forbidden_Request: ForbiddenRequest,
     Not_Found: NotFound,
-    Internal_Server_Error: InternalServerError
+    Internal_Server_Error: InternalServerError,
+    Invalid_Parameter: InvalidParameter,
+    Resource_Not_Found: ResourceNotFound
   }
 }
