@@ -18,16 +18,17 @@ const logger = require('@adobe/aio-lib-core-logging')('aio-lib-analytics', { lev
 /**
 * Returns a Promise that resolves with a new AnalyticsCoreAPI object.
 *
-* @param companyId {string} company ID to be used with Adobe Analytics.
+* @param companyId {string} company ID to be used with Adobe Analytics.  If this is not available, it should be set to null and the imsOrgId included in the parameters.
 * @param apiKey {string} Your api key
 * @param token {string} Valid auth token
+* @param imsOrgId {string} Valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' )  Only passed when a companyId is unavaiable.
 * @returns {Promise<AnalyticsCoreAPI>}
 */
-function init (companyId, apiKey, token) {
+function init (companyId, apiKey, token, imsOrgId) {
   return new Promise((resolve, reject) => {
     const clientWrapper = new AnalyticsCoreAPI()
 
-    clientWrapper.init(companyId, apiKey, token)
+    clientWrapper.init(companyId, apiKey, token, imsOrgId)
       .then(initializedSDK => {
         logger.debug('sdk initialized successfully')
         resolve(initializedSDK)
@@ -47,15 +48,24 @@ function init (companyId, apiKey, token) {
 class AnalyticsCoreAPI {
   /** Initialize sdk.
   *
-  * @param companyId {string} company ID to be used with Adobe Analytics.
+  * @param companyId {string} company ID to be used with Adobe Analytics (optional - if passed as null, then getDiscoveryCredentials is called to retrieve the company ID).
   * @param apiKey {string} Your api key
   * @param token {string} Valid auth token
+  * @param imsOrgId {string} Valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' )  Only passed when a companyId is unavaiable.
   * @returns {AnalyticsCoreAPI}
   */
-  async init (companyId, apiKey, token) {
+  async init (companyId, apiKey, token, imsOrgId) {
+    //console.debug(companyId, apiKey, token, imsOrgId)
     const initErrors = []
-    if (!companyId) {
-      initErrors.push('companyId')
+    if (!companyId || companyId === null) {
+      const discoveryResponse = await this.getDiscoveryCredentials(apiKey, token)
+      for(const i in discoveryResponse.imsOrgs){
+        if(discoveryResponse.imsOrgs[i].imsOrgId === imsOrgId){
+          companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
+          var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
+          break
+        }
+      }
     }
     if (!apiKey) {
       initErrors.push('apiKey')
@@ -81,9 +91,39 @@ class AnalyticsCoreAPI {
       this.companyId = companyId
       this.apiKey = apiKey
       this.token = token
+      this.companyName = companyName
 
       return this
     }
+  }
+
+  /** Retrieve Discovery credentials
+  *  The discovery/me API returns information on the user's company that is necessary for making other Adobe Analytics API calls.
+  *  It returns information on who is making the call by inspecting the Access Token that is sent for authentication.
+  *
+  *  For example, if you have multiple logins for various companies, you can use this API to return a list of the companies associated your Client ID. From the list you can then choose which company to call with other APIs.
+  *  To make a discovery/me API call, you provide your Client ID and an Access Token.
+  *
+  *  For more information about the Discovery API go [here] (https://github.com/AdobeDocs/analytics-2.0-apis#getting-started)
+  *
+  *  @param clientId {String} The IMS Org ID for the selected client
+  *  @param jwtToken {String} The authorized JWT token retrieved as part of the client's IO integration
+  */
+
+  async getDiscoveryCredentials(clientId, token){
+    return fetch("https://analytics.adobe.io/discovery/me", {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept' : 'application/json',
+        "Authorization": "Bearer " + token,
+        "x-api-key": clientId
+      }
+    }).then(response => response.json())
+    .catch((error) => {
+      console.error("getDiscoveryCredentials error:", error)
+    })
   }
 
   /** Retrieve many calculated metrics.
