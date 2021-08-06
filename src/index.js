@@ -55,12 +55,12 @@ class AnalyticsCoreAPI {
   * @returns {AnalyticsCoreAPI}
   */
   async init (companyId, apiKey, token, imsOrgId) {
-    //console.debug(companyId, apiKey, token, imsOrgId)
+    // console.debug(companyId, apiKey, token, imsOrgId)
     const initErrors = []
     if (!companyId || companyId === null) {
       const discoveryResponse = await this.getDiscoveryCredentials(apiKey, token)
-      for(const i in discoveryResponse.imsOrgs){
-        if(discoveryResponse.imsOrgs[i].imsOrgId === imsOrgId){
+      for (const i in discoveryResponse.imsOrgs) {
+        if (discoveryResponse.imsOrgs[i].imsOrgId === imsOrgId) {
           companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
           var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
           break
@@ -110,20 +110,20 @@ class AnalyticsCoreAPI {
   *  @param jwtToken {String} The authorized JWT token retrieved as part of the client's IO integration
   */
 
-  async getDiscoveryCredentials(clientId, token){
-    return fetch("https://analytics.adobe.io/discovery/me", {
+  async getDiscoveryCredentials (clientId, token) {
+    return fetch('https://analytics.adobe.io/discovery/me', {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'accept' : 'application/json',
-        "Authorization": "Bearer " + token,
-        "x-api-key": clientId
+        accept: 'application/json',
+        Authorization: 'Bearer ' + token,
+        'x-api-key': clientId
       }
     }).then(response => response.json())
-    .catch((error) => {
-      console.error("getDiscoveryCredentials error:", error)
-    })
+      .catch((error) => {
+        console.error('getDiscoveryCredentials error:', error)
+      })
   }
 
   /** Retrieve many calculated metrics.
