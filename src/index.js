@@ -61,10 +61,14 @@ class AnalyticsCoreAPI {
     if (!companyId || companyId === null) {
       const discoveryResponse = await this.getDiscoveryCredentials(apiKey, token)
       for (const i in discoveryResponse.imsOrgs) {
-        if (discoveryResponse.imsOrgs[i].imsOrgId === options?.imsOrg) {
-          companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
-          var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
-          break
+        if (options !== null || options !== undefined) {
+          if (options.imsOrg !== null || options.imsOrg !== undefined) {
+            if (discoveryResponse.imsOrgs[i].imsOrgId === options?.imsOrg) {
+              companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
+              var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
+              break
+            }
+          }
         }
       }
     }
