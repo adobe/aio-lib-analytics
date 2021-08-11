@@ -63,7 +63,7 @@ class AnalyticsCoreAPI {
       for (const i in discoveryResponse.imsOrgs) {
         if (options !== null || options !== undefined) {
           if (options.imsOrg !== null || options.imsOrg !== undefined) {
-            if (discoveryResponse.imsOrgs[i].imsOrgId === options?.imsOrg) {
+            if (discoveryResponse.imsOrgs[i].imsOrgId === options.imsOrg) {
               companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
               var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
               break
