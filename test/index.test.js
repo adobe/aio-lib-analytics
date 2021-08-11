@@ -16,6 +16,9 @@ const errorSDK = require('../src/SDKErrors')
 const company = 'test-company'
 const apiKey = 'test-apikey'
 const token = 'test-token'
+const options = {
+  imsOrg: 'test-imsOrg'
+}
 var sdkClient = {}
 
 function mockResponseWithMethod (url, method, response) {
@@ -41,6 +44,15 @@ test('sdk init test', async () => {
   expect(sdkClient.companyId).toBe(company)
   expect(sdkClient.apiKey).toBe(apiKey)
   expect(sdkClient.token).toBe(token)
+})
+
+test('sdk init test with imsOrg', async () => {
+  sdkClient = await sdk.init(company, apiKey, token, options)
+
+  expect(sdkClient.companyId).toBe(company)
+  expect(sdkClient.apiKey).toBe(apiKey)
+  expect(sdkClient.token).toBe(token)
+  expect(sdkClient.options).toBe(options)
 })
 
 test('test getCalculatedMetrics', async () => {
