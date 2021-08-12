@@ -15,6 +15,7 @@
   "dependencies": {
     "@adobe/aio-lib-core-errors": "^3.0.0",
     "@adobe/aio-lib-core-logging": "^1.1.2",
+    "node-fetch": "^2.6.1",
     "swagger-client": "3.10.13"
   },
   "devDependencies": {

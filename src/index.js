@@ -14,6 +14,7 @@ governing permissions and limitations under the License.
 const Swagger = require('swagger-client')
 const { codes } = require('./SDKErrors')
 const logger = require('@adobe/aio-lib-core-logging')('aio-lib-analytics', { level: process.env.LOG_LEVEL })
+const fetch = require('node-fetch')
 
 /**
 * Returns a Promise that resolves with a new AnalyticsCoreAPI object.
@@ -21,14 +22,13 @@ const logger = require('@adobe/aio-lib-core-logging')('aio-lib-analytics', { lev
 * @param companyId {string} company ID to be used with Adobe Analytics.  If this is not available, it should be set to null and the imsOrgId included in the parameters.
 * @param apiKey {string} Your api key
 * @param token {string} Valid auth token
-* @param imsOrgId {string} Valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' )  Only passed when a companyId is unavaiable.
+* @param options {object} Extensible to include additional parameters, as necessary.  For example, can be used to include valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' ) which is only passed when a companyId is unavaiable.
 * @returns {Promise<AnalyticsCoreAPI>}
 */
-function init (companyId, apiKey, token, imsOrgId) {
+function init (companyId, apiKey, token, options) {
   return new Promise((resolve, reject) => {
     const clientWrapper = new AnalyticsCoreAPI()
-
-    clientWrapper.init(companyId, apiKey, token, imsOrgId)
+    clientWrapper.init(companyId, apiKey, token, options)
       .then(initializedSDK => {
         logger.debug('sdk initialized successfully')
         resolve(initializedSDK)
@@ -51,19 +51,22 @@ class AnalyticsCoreAPI {
   * @param companyId {string} company ID to be used with Adobe Analytics (optional - if passed as null, then getDiscoveryCredentials is called to retrieve the company ID).
   * @param apiKey {string} Your api key
   * @param token {string} Valid auth token
-  * @param imsOrgId {string} Valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' )  Only passed when a companyId is unavaiable.
+  * @param options {object} Extensible to include additional parameters, as necessary.  For example, can be used to include valid IMS Org ID (i.e., 'F9452D1224FEA71029B5C8A97@AdobeOrg' ) which is only passed when a companyId is unavaiable.
   * @returns {AnalyticsCoreAPI}
   */
-  async init (companyId, apiKey, token, imsOrgId) {
-    // console.debug(companyId, apiKey, token, imsOrgId)
+  async init (companyId, apiKey, token, options) {
     const initErrors = []
     if (!companyId || companyId === null) {
       const discoveryResponse = await this.getDiscoveryCredentials(apiKey, token)
       for (const i in discoveryResponse.imsOrgs) {
-        if (discoveryResponse.imsOrgs[i].imsOrgId === imsOrgId) {
-          companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
-          var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
-          break
+        if (options !== null || options !== undefined) {
+          if (options.imsOrg !== null || options.imsOrg !== undefined) {
+            if (discoveryResponse.imsOrgs[i].imsOrgId === options.imsOrg) {
+              companyId = discoveryResponse.imsOrgs[i].companies[0].globalCompanyId
+              var companyName = discoveryResponse.imsOrgs[i].companies[0].companyName
+              break
+            }
+          }
         }
       }
     }
