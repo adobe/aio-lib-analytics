@@ -13,14 +13,14 @@
     "validate": "bin/validate_spec.js spec/analytics_api.json"
   },
   "dependencies": {
-    "swagger-client": "3.10.13",
     "@adobe/aio-lib-core-errors": "^3.0.0",
-    "@adobe/aio-lib-core-logging": "^1.1.2"
+    "@adobe/aio-lib-core-logging": "^1.1.2",
+    "swagger-client": "3.10.13"
   },
   "devDependencies": {
     "codecov": "^3.6.1",
     "dotenv": "^8.1.0",
-    "eslint": "^6.2.2",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^23.2.0",
