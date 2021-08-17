@@ -108,6 +108,11 @@ const InternalServerError = {
   },
   message: 'Internal Server Error'
 }
+const InvalidOAuthToken = {
+  err: {
+    throws: new Error('Oauth token is not valid')
+  }
+}
 const collection = {
   name: 'testcollection',
   currency: 'string',
@@ -591,6 +596,24 @@ const usageLogs =
     size: 1,
     number: 0
   }
+const discovery =
+  {
+    imsUserId: 'test@techacct.adobe.com',
+    imsOrgs: [
+      {
+        imsOrgId: 'test@AdobeOrg',
+        companies: [
+          {
+            globalCompanyId: '123',
+            companyName: '123',
+            apiRateLimitPolicy: 'aa_api_tier10_tp',
+            dpc: 'pnw'
+          }
+        ]
+      }
+    ]
+  }
+
 const data = {
   calculatedMetrics: [calculatedMetric],
   calculatedMetric: calculatedMetric,
@@ -600,6 +623,7 @@ const data = {
   dateRange: dateRange,
   dimensions: [dimension],
   dimension: dimension,
+  discovery: discovery,
   metrics: [metric],
   metric: metric,
   report: report,
@@ -622,6 +646,7 @@ module.exports = {
     Not_Found: NotFound,
     Internal_Server_Error: InternalServerError,
     Invalid_Parameter: InvalidParameter,
-    Resource_Not_Found: ResourceNotFound
+    Resource_Not_Found: ResourceNotFound,
+    Invalid_OAuth_Token: InvalidOAuthToken
   }
 }

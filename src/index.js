@@ -124,9 +124,9 @@ class AnalyticsCoreAPI {
         'x-api-key': clientId
       }
     }).then(response => response.json())
-      .catch((error) => {
-        console.error('getDiscoveryCredentials error:', error)
-      })
+    /* .catch((error) => {
+      console.error('getDiscoveryCredentials error:', error)
+    }) */
   }
 
   /** Retrieve many calculated metrics.

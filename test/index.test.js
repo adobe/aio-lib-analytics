@@ -46,6 +46,21 @@ test('sdk init test', async () => {
   expect(sdkClient.token).toBe(token)
 })
 
+test('test getDiscoveryCredentials', async () => {
+  const url = 'https://analytics.adobe.io/api/discovery/me'
+  const method = 'GET'
+  // const api = 'getDiscoveryCredentials'
+
+  // check success response
+  mockResponseWithMethod(url, method, mock.data.discovery)
+  var res = await sdkClient.getDiscoveryCredentials(apiKey, token)
+  expect(res !== 'undefined').toEqual(true)
+
+  // check error responses
+  // return expect(sdkClient.getDiscoveryCredentials(apiKey, null)).rejects.toEqual(
+  // new errorSDK.codes.ERROR_GET_DISCOVERY({ messageValues: 'accessToken' }))
+})
+
 test('test getCalculatedMetrics', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/calculatedmetrics'
   const method = 'GET'
