@@ -10,15 +10,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: [14]
+        node: [16]
         os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ matrix.node }}
     - run: npm i --package-lock --package-lock-only
     - run: npm ci
     - name: run unit tests
