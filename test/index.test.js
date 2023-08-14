@@ -46,7 +46,7 @@ test('sdk init test', async () => {
   expect(sdkClient.token).toBe(token)
 })
 
-test('test getDiscoveryCredentials', async () => {
+test('getDiscoveryCredentials', async () => {
   const url = 'https://analytics.adobe.io/api/discovery/me'
   const method = 'GET'
   // const api = 'getDiscoveryCredentials'
@@ -61,7 +61,7 @@ test('test getDiscoveryCredentials', async () => {
   // new errorSDK.codes.ERROR_GET_DISCOVERY({ messageValues: 'accessToken' }))
 })
 
-test('test getCalculatedMetrics', async () => {
+test('getCalculatedMetrics', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/calculatedmetrics'
   const method = 'GET'
   const api = 'getCalculatedMetrics'
@@ -83,7 +83,7 @@ test('test getCalculatedMetrics', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRICS())
 })
 
-test('test getCalculatedMetricById', async () => {
+test('getCalculatedMetricById', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/calculatedmetrics/123'
   const method = 'GET'
   const api = 'getCalculatedMetricById'
@@ -103,7 +103,7 @@ test('test getCalculatedMetricById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CALCULATED_METRIC_BY_ID(), [123])
 })
 
-test('test getCollections', async () => {
+test('getCollections', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/collections/suites'
   const method = 'GET'
   const api = 'getCollections'
@@ -119,7 +119,7 @@ test('test getCollections', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTIONS())
 })
 
-test('test getCollectionById', async () => {
+test('getCollectionById', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/collections/suites/123'
   const method = 'GET'
   const api = 'getCollectionById'
@@ -141,7 +141,7 @@ test('test getCollectionById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_COLLECTION_BY_ID(), [123])
 })
 
-test('test getDateRanges', async () => {
+test('getDateRanges', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/dateranges'
   const method = 'GET'
   const api = 'getDateRanges'
@@ -159,7 +159,7 @@ test('test getDateRanges', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DATE_RANGES())
 })
 
-test('test getDateRangeById', async () => {
+test('getDateRangeById', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/dateranges/123'
   const method = 'GET'
   const api = 'getDateRangeById'
@@ -179,7 +179,7 @@ test('test getDateRangeById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DATE_RANGE_BY_ID(), [123])
 })
 
-test('test getDimensions', async () => {
+test('getDimensions', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/dimensions?rsid=123'
   const method = 'GET'
   const api = 'getDimensions'
@@ -203,7 +203,7 @@ test('test getDimensions', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSIONS(), [123])
 })
 
-test('test getDimensionById', async () => {
+test('getDimensionById', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/dimensions/111?rsid=123'
   const method = 'GET'
   const api = 'getDimensionById'
@@ -221,7 +221,7 @@ test('test getDimensionById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_DIMENSION_BY_ID(), [111, 123])
 })
 
-test('test getMetrics', async () => {
+test('getMetrics', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/metrics?rsid=123'
   const method = 'GET'
   const api = 'getMetrics'
@@ -245,7 +245,7 @@ test('test getMetrics', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRICS(), [123])
 })
 
-test('test getMetricById', async () => {
+test('getMetricById', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/metrics/111?rsid=123'
   const method = 'GET'
   const api = 'getMetricById'
@@ -265,7 +265,7 @@ test('test getMetricById', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_METRIC_BY_ID(), [111, 123])
 })
 
-test('test getReport', async () => {
+test('getReport', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/reports'
   const method = 'POST'
   const api = 'getReport'
@@ -283,7 +283,7 @@ test('test getReport', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_REPORT(), [{}])
 })
 
-test('test getSegments', async () => {
+test('getSegments', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/segments'
   const method = 'GET'
   const api = 'getSegments'
@@ -305,7 +305,7 @@ test('test getSegments', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_SEGMENTS())
 })
 
-test('test validateSegment', async () => {
+test('validateSegment', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/segments/validate?rsid=111'
   const method = 'POST'
   const api = 'validateSegment'
@@ -326,7 +326,7 @@ test('test validateSegment', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_VALIDATE_SEGMENT(), [111, {}])
 })
 
-test('test getUsers', async () => {
+test('getUsers', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/users'
   const method = 'GET'
   const api = 'getUsers'
@@ -348,7 +348,7 @@ test('test getUsers', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_USERS(), [123])
 })
 
-test('test getCurrentUser', async () => {
+test('getCurrentUser', async () => {
   const url = 'https://analytics.adobe.io/api/test-company/users/me'
   const method = 'GET'
   const api = 'getCurrentUser'
@@ -363,7 +363,7 @@ test('test getCurrentUser', async () => {
   res = await checkErrorResponse(api, url, method, new errorSDK.codes.ERROR_GET_CURRENT_USER())
 })
 
-test('test getUsageLogs', async () => {
+test('getUsageLogs', async () => {
   let url = 'https://analytics.adobe.io/api/test-company/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-02T14%3A32%3A33-07&limit=10&page=0'
   const method = 'GET'
   const api = 'getUsageLogs'
@@ -392,39 +392,41 @@ test('test getUsageLogs', async () => {
   expect(res.body.content[0].dateCreated).toEqual('2021-01-01T00:00:00-07')
 })
 
-test('test __setHeader preset api key header', async () => {
+test('__setHeader preset api key header', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
   const req = { headers: { 'x-api-key': 'test' } }
   sdkClient.__setHeaders(req, sdkClient, {})
   expect(req.headers['x-api-key']).toBe('test')
 })
 
-test('test __setHeader preset x-proxy-global-company-id header', async () => {
+test('__setHeader preset x-proxy-global-company-id header', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
   const req = { headers: { 'x-proxy-global-company-id': 'test' } }
   sdkClient.__setHeaders(req, sdkClient, {})
   expect(req.headers['x-proxy-global-company-id']).toBe('test')
 })
 
-test('test __setHeader preset authorization header', async () => {
+test('__setHeader preset authorization header', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
   const req = { headers: { Authorization: 'test' } }
   sdkClient.__setHeaders(req, sdkClient, {})
   expect(req.headers.Authorization).toBe('test')
 })
 
-function checkErrorResponse (fn, url, method, error, args = []) {
+async function checkErrorResponse (fn, url, method, error, args = []) {
   const client = sdkClient
-  return new Promise((resolve, reject) => {
-    (client[fn](args[0], args[1]))
-      .then(res => {
-        reject(new Error(' No error response'))
-      })
-      .catch(e => {
-        expect(e.name).toEqual(error.name)
-        expect(e.code).toEqual(error.code)
-        expect(e.message).not.toContain('response: [Object]')
-        resolve()
-      })
-  })
+  const noErrorResponse = new Error(' No error response')
+
+  let e
+  try {
+    await client[fn](args[0], args[1])
+    e = noErrorResponse
+  } catch (err) {
+    e = err
+  }
+
+  expect(e).not.toEqual(noErrorResponse)
+  expect(e.name).toEqual(error.name)
+  expect(e.code).toEqual(error.code)
+  expect(e.message).not.toContain('response: [Object]')
 }
