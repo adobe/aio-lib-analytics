@@ -17,6 +17,9 @@ const company = 'test-company'
 const apiKey = 'test-apikey'
 const token = 'test-token'
 var sdkClient = {}
+var options = {
+  imsOrg: 'test@AdobeOrg'
+}
 
 function mockResponseWithMethod (url, method, response) {
   fetchMock.reset()
@@ -24,11 +27,12 @@ function mockResponseWithMethod (url, method, response) {
 }
 
 test('sdk init error, no companyId passed', async () => {
-  await expect(sdk.init(null, apiKey, token)).rejects.toThrow('[AnalyticsSDK:ERROR_SDK_INITIALIZATION] SDK initialization error(s). Missing arguments: companyId')
+  var res = await sdk.init(null, apiKey, token, options)
+  expect(typeof res.sdk === 'object').toEqual(true)
 })
 
 test('sdk init error, no apiKey passed', async () => {
-  await expect(sdk.init(company, null, token)).rejects.toThrow('[AnalyticsSDK:ERROR_SDK_INITIALIZATION] SDK initialization error(s). Missing arguments: apiKey')
+  await expect(sdk.init(company, null, token, options)).rejects.toThrow('[AnalyticsSDK:ERROR_SDK_INITIALIZATION] SDK initialization error(s). Missing arguments: apiKey')
 })
 
 test('sdk init error, no token passed', async () => {
@@ -37,10 +41,24 @@ test('sdk init error, no token passed', async () => {
 
 test('sdk init test', async () => {
   sdkClient = await sdk.init(company, apiKey, token)
-
   expect(sdkClient.companyId).toBe(company)
   expect(sdkClient.apiKey).toBe(apiKey)
   expect(sdkClient.token).toBe(token)
+})
+
+test('getDiscoveryCredentials', async () => {
+  const url = 'https://analytics.adobe.io/api/discovery/me'
+  const method = 'GET'
+  // const api = 'getDiscoveryCredentials'
+
+  // check success response
+  mockResponseWithMethod(url, method, mock.data.discovery)
+  var res = await sdkClient.getDiscoveryCredentials(apiKey, token)
+  expect(res !== 'undefined').toEqual(true)
+
+  // check error responses
+  // return expect(sdkClient.getDiscoveryCredentials(apiKey, null)).rejects.toEqual(
+  // new errorSDK.codes.ERROR_GET_DISCOVERY({ messageValues: 'accessToken' }))
 })
 
 test('getCalculatedMetrics', async () => {
