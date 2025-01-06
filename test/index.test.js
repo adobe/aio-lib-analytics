@@ -9,14 +9,14 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-var fetchMock = require('fetch-mock')
+const fetchMock = require('fetch-mock')
 const sdk = require('../src')
 const mock = require('./mock')
 const errorSDK = require('../src/SDKErrors')
 const company = 'test-company'
 const apiKey = 'test-apikey'
 const token = 'test-token'
-var sdkClient = {}
+let sdkClient = {}
 
 function mockResponseWithMethod (url, method, response) {
   fetchMock.reset()
@@ -50,7 +50,7 @@ test('getCalculatedMetrics', async () => {
 
   mockResponseWithMethod(url, method, mock.data.calculatedMetrics)
   // check success response
-  var res = await sdkClient.getCalculatedMetrics()
+  let res = await sdkClient.getCalculatedMetrics()
   expect(res.body.length).toEqual(1)
   expect(res.body[0].id).toEqual('123')
 
@@ -72,7 +72,7 @@ test('getCalculatedMetricById', async () => {
 
   mockResponseWithMethod(url, method, mock.data.calculatedMetric)
   // check success response
-  var res = await sdkClient.getCalculatedMetricById(123)
+  let res = await sdkClient.getCalculatedMetricById(123)
   expect(res.body.id).toEqual('123')
 
   res = await sdkClient.getCalculatedMetricById(123, {})
@@ -92,7 +92,7 @@ test('getCollections', async () => {
 
   mockResponseWithMethod(url, method, mock.data.collections)
   // check success response
-  var res = await sdkClient.getCollections()
+  let res = await sdkClient.getCollections()
   expect(res.body.length).toEqual(1)
   expect(res.body[0].name).toEqual('testcollection')
 
@@ -108,7 +108,7 @@ test('getCollectionById', async () => {
 
   mockResponseWithMethod(url, method, mock.data.collection)
   // check success response
-  var res = await sdkClient.getCollectionById(123)
+  let res = await sdkClient.getCollectionById(123)
   expect(res.body.rsid).toEqual('123')
 
   res = await sdkClient.getCollectionById(123, {})
@@ -130,7 +130,7 @@ test('getDateRanges', async () => {
 
   mockResponseWithMethod(url, method, mock.data.dateRanges)
   // check success response
-  var res = await sdkClient.getDateRanges()
+  let res = await sdkClient.getDateRanges()
   expect(res.body.length).toEqual(1)
   expect(res.body[0].id).toEqual('123')
 
@@ -148,7 +148,7 @@ test('getDateRangeById', async () => {
 
   mockResponseWithMethod(url, method, mock.data.dateRange)
   // check success response
-  var res = await sdkClient.getDateRangeById(123)
+  let res = await sdkClient.getDateRangeById(123)
   expect(res.body.id).toEqual('123')
 
   res = await sdkClient.getDateRangeById(123, {})
@@ -168,7 +168,7 @@ test('getDimensions', async () => {
 
   mockResponseWithMethod(url, method, mock.data.dimensions)
   // check success response
-  var res = await sdkClient.getDimensions(123)
+  let res = await sdkClient.getDimensions(123)
   expect(res.body.length).toEqual(1)
   expect(res.body[0].id).toEqual('111')
 
@@ -192,7 +192,7 @@ test('getDimensionById', async () => {
 
   mockResponseWithMethod(url, method, mock.data.dimension)
   // check success response
-  var res = await sdkClient.getDimensionById(111, 123)
+  let res = await sdkClient.getDimensionById(111, 123)
   expect(res.body.id).toEqual('111')
 
   res = await sdkClient.getDimensionById(111, 123, {})
@@ -210,7 +210,7 @@ test('getMetrics', async () => {
 
   mockResponseWithMethod(url, method, mock.data.metrics)
   // check success response
-  var res = await sdkClient.getMetrics(123)
+  let res = await sdkClient.getMetrics(123)
   expect(res.body.length).toEqual(1)
   expect(res.body[0].id).toEqual('111')
 
@@ -234,7 +234,7 @@ test('getMetricById', async () => {
 
   mockResponseWithMethod(url, method, mock.data.metric)
   // check success response
-  var res = await sdkClient.getMetricById(111, 123)
+  let res = await sdkClient.getMetricById(111, 123)
   expect(res.body.id).toEqual('111')
 
   res = await sdkClient.getMetricById(111, 123, {})
@@ -254,7 +254,7 @@ test('getReport', async () => {
 
   mockResponseWithMethod(url, method, mock.data.report)
   // check success response
-  var res = await sdkClient.getReport(mock.data.reportReq)
+  let res = await sdkClient.getReport(mock.data.reportReq)
   expect(res.body.totalPages).toEqual(10)
   expect(res.body.numberOfElements).toEqual(100)
 
@@ -272,7 +272,7 @@ test('getSegments', async () => {
 
   mockResponseWithMethod(url, method, mock.data.segments)
   // check success response
-  var res = await sdkClient.getSegments()
+  let res = await sdkClient.getSegments()
   expect(res.body.length).toEqual(1)
   expect(res.body[0].id).toEqual('111')
 
@@ -294,7 +294,7 @@ test('validateSegment', async () => {
 
   mockResponseWithMethod(url, method, mock.data.validSegment)
   // check success response
-  var res = await sdkClient.validateSegment(111, {})
+  let res = await sdkClient.validateSegment(111, {})
   expect(res.body.valid).toEqual(true)
 
   // check error responses
@@ -315,7 +315,7 @@ test('getUsers', async () => {
 
   mockResponseWithMethod(url, method, mock.data.users)
   // check success response
-  var res = await sdkClient.getUsers()
+  let res = await sdkClient.getUsers()
   expect(res.body.length).toEqual(1)
   expect(res.body[0].companyid).toEqual('123')
 
@@ -337,7 +337,7 @@ test('getCurrentUser', async () => {
 
   mockResponseWithMethod(url, method, mock.data.user)
   // check success response
-  var res = await sdkClient.getCurrentUser()
+  let res = await sdkClient.getCurrentUser()
   expect(res.body.companyid).toEqual('123')
 
   // check error responses
@@ -352,7 +352,7 @@ test('getUsageLogs', async () => {
 
   mockResponseWithMethod(url, method, mock.data.usageLogs)
   // check success response
-  var res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
+  let res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
   expect(res.body.totalElements).toEqual(1)
   expect(res.body.content[0].dateCreated).toEqual('2021-01-01T00:00:00-07')
 

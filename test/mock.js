@@ -593,28 +593,28 @@ const usageLogs =
   }
 const data = {
   calculatedMetrics: [calculatedMetric],
-  calculatedMetric: calculatedMetric,
+  calculatedMetric,
   collections: [collection],
-  collection: collection,
+  collection,
   dateRanges: [dateRange],
-  dateRange: dateRange,
+  dateRange,
   dimensions: [dimension],
-  dimension: dimension,
+  dimension,
   metrics: [metric],
-  metric: metric,
-  report: report,
-  reportReq: reportReq,
+  metric,
+  report,
+  reportReq,
   segments: [segment],
-  segment: segment,
-  validSegment: validSegment,
+  segment,
+  validSegment,
   users: [user],
-  user: user,
-  usageLogs: usageLogs
+  user,
+  usageLogs
 
 }
 
 module.exports = {
-  data: data,
+  data,
   errors: {
     Bad_Request: BadRequest,
     Unauthorized_Request: UnauthorizedRequest,

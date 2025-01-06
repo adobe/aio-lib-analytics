@@ -15,7 +15,7 @@ const path = require('path')
 // load .env values in the e2e folder, if any
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-var sdkClient = {}
+let sdkClient = {}
 const company = process.env.ANALYTICS_COMPANY
 const apiKey = process.env.ANALYTICS_APIKEY
 const token = process.env.ANALYTICS_TOKEN
@@ -33,7 +33,7 @@ test('sdk init test', async () => {
 
 test('getCollections and getCollectionById', async () => {
   // check success response
-  var res = await sdkClient.getCollections({ limit: 5, page: 0 })
+  let res = await sdkClient.getCollections({ limit: 5, page: 0 })
   expect(res.status).toEqual(200)
   if (res.body.content && res.body.content.length > 0) {
     const element = res.body.content[0]
@@ -45,7 +45,7 @@ test('getCollections and getCollectionById', async () => {
 
 test('getUsageLogs', async () => {
   // check success response
-  var res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
+  const res = await sdkClient.getUsageLogs('2021-01-01T00:00:00-07', '2021-01-02T14:32:33-07')
   expect(res.status).toEqual(200)
 })
 
