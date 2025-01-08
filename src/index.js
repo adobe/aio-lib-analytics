@@ -71,7 +71,7 @@ class AnalyticsCoreAPI {
       // init swagger client
       const spec = require('../spec/analytics_api.json')
       const swagger = new Swagger({
-        spec: spec,
+        spec,
         requestInterceptor: req => {
           this.__setHeaders(req, this)
         },
@@ -137,7 +137,7 @@ class AnalyticsCoreAPI {
   * @param options.locale Locale.
   */
   getCalculatedMetricById (id, { expansion, locale } = {}) {
-    var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
+    const params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.id = id
     const sdkDetails = params
     return new Promise((resolve, reject) => {
@@ -182,7 +182,7 @@ class AnalyticsCoreAPI {
   * @param options.expansion Comma-delimited list of additional metadata fields to include on\nresponse.
   */
   getCollectionById (rsid, { expansion } = {}) {
-    var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
+    const params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
@@ -227,7 +227,7 @@ class AnalyticsCoreAPI {
   * @param options.locale Locale.
   */
   getDateRangeById (dateRangeId, { expansion, locale } = {}) {
-    var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
+    const params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.dateRangeId = dateRangeId
     const sdkDetails = params
     return new Promise((resolve, reject) => {
@@ -252,7 +252,7 @@ class AnalyticsCoreAPI {
   * @param options.segmentable Only include dimensions that are valid within a segment.
   */
   getDimensions (rsid, { classifiable, expansion, locale, reportable, segmentable } = {}) {
-    var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
+    const params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
@@ -275,7 +275,7 @@ class AnalyticsCoreAPI {
   * @param options.locale Locale.
   */
   getDimensionById (dimensionId, rsid, { expansion, locale } = {}) {
-    var params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
+    const params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
     params.dimensionId = dimensionId
     params.rsid = rsid
     const sdkDetails = params
@@ -301,7 +301,7 @@ class AnalyticsCoreAPI {
   * @param options.segmentable Filter the metrics by if they are valid in a segment.
   */
   getMetrics (rsid, { expansion, locale, segmentable } = {}) {
-    var params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
+    const params = (typeof arguments[1] === 'undefined') ? {} : arguments[1]
     params.rsid = rsid
     const sdkDetails = params
     return new Promise((resolve, reject) => {
@@ -326,7 +326,7 @@ class AnalyticsCoreAPI {
   * @param options.locale Locale that system named metrics should be returned in.
   */
   getMetricById (id, rsid, { expansion, locale } = {}) {
-    var params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
+    const params = (typeof arguments[2] === 'undefined') ? {} : arguments[2]
     params.rsid = rsid
     params.id = id
     const sdkDetails = params
@@ -394,7 +394,7 @@ class AnalyticsCoreAPI {
   validateSegment (rsid, body) {
     const sdkDetails = { rsid, body }
     return new Promise((resolve, reject) => {
-      this.sdk.apis.segments.segments_validateSegment({ rsid: rsid }, this.__createRequest(body))
+      this.sdk.apis.segments.segments_validateSegment({ rsid }, this.__createRequest(body))
         .then(response => {
           resolve(response)
         })
@@ -498,5 +498,5 @@ class AnalyticsCoreAPI {
 }
 
 module.exports = {
-  init: init
+  init
 }
