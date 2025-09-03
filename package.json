@@ -15,7 +15,7 @@
   "dependencies": {
     "@adobe/aio-lib-core-errors": "^4",
     "@adobe/aio-lib-core-logging": "^3",
-    "swagger-client": "^3.19.10"
+    "swagger-client": "^3.35.6"
   },
   "devDependencies": {
     "@adobe/eslint-config-aio-lib-config": "^4.0.0",
